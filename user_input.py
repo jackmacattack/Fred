@@ -9,7 +9,7 @@ def main() :
     command = input( "Enter number here: " )
 
     if command == 1 :
-        username = raw_input( 'Username: ')
+        username = raw_input( 'Username: ') #hey
         password = raw_input( 'Password: ')
         #search on database to find that username and password pair
         #return true or false
