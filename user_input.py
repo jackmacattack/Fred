@@ -1,15 +1,16 @@
+__author__ = 'msstudent'
+
 
 def main() :
     print 'Hello! Welcome to OneDir.'
     print 'If you already have a OneDir account, please enter 1.'
     print 'If you would like to create an account, please enter 2.'
-    #don't know if we want this or not
     print 'If you already have an account, but do not remember the password, enter 3.'
     print 'If you dont want to use OneDir, enter 0.'
     command = input( "Enter number here: " )
 
     if command == 1 :
-        username = raw_input( 'Username: ') #hey
+        username = raw_input( 'Username: ')
         password = raw_input( 'Password: ')
         #search on database to find that username and password pair
         #return true or false
@@ -30,3 +31,4 @@ def main() :
 
 if __name__ == '__main__' :
     main()
+
