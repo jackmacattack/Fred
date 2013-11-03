@@ -26,6 +26,11 @@ class DataFile:
 
         return False
 
+    def change_filecount(self, name, count):
+        d = self.data[name]
+        d['file_count'] = count
+        self.data[name] = d
+
     def retrieve_password(self, name, answer):
         d = self.data[name]
         if d['answer'] == answer:
