@@ -5,6 +5,7 @@ def main() :
     print 'If you would like to create an account, please enter 2.'
     #don't know if we want this or not
     print 'If you already have an account, but do not remember the password, enter 3.'
+    print 'If you are an admin, please enter admin.'
     print 'If you dont want to use OneDir, enter 0.'
     command = input( "Enter number here: " )
 
@@ -24,6 +25,8 @@ def main() :
     if command == 3 :
         find_username = raw_input( 'Please enter your username: ' )
         #search database for username...print password?
+    if command == 'admin' :
+        #go to different admin userface
     if command == 0 :
         print 'Goodbye!'
 
