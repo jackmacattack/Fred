@@ -21,22 +21,24 @@ class SocketThread:
         thread.start_new_thread(self.listen, ())
 
     def connect(self, host, port):
+        if host == "localhost":
+            host = socket.gethostname()
+
         self.s.connect((host, port))      # print recieved data
         self.connected = True
 
     def listen(self):
-        print self.host, self.port
         s = socket.socket()
+
         s.bind((self.host, self.port))        # Bind to the port
 
         s.listen(5)                 # Now wait for client connection.
 
         while not self.exit:
             c, addr = s.accept()     # Establish connection with client.
-
             data = c.recv(1024)     # create the file
-
-            self.l.on_message(addr, data)
+            if data:
+                self.l.on_message(addr, data)
 
             c.close()                # Close the connection
 
@@ -51,6 +53,9 @@ class SocketThread:
     def disconnect(self):
         self.s.close()
         self.connected = False
+        self.s = socket.socket()
 
     def stop(self):
         self.exit = True
+        self.connect(self.host, self.port)
+        self.disconnect()
