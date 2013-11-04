@@ -34,10 +34,11 @@ class TestClient(unittest.TestCase):
         server_test = False
 
         thread.start_new_thread(self.server, ())
+        self.c = client.Client("localhost", 12344)
+        self.c.start("localhost", 12345)
 
     def test_message(self):
-        c = client.Client()
-        c.send_message("Love")
+        self.c.send_message("Love")
 
         time.sleep(5)
 
@@ -48,13 +49,12 @@ class TestClient(unittest.TestCase):
         file.write("Love")
         file.close()
 
-        c = client.Client()
-        c.upload("testing_temp_123456789876543213531.dat")
+        self.c.upload("testing_temp_123456789876543213531.dat")
 
         time.sleep(5)
 
         self.assertTrue(self.server_test)
 
     def tearDown(self):
-        pass
+        self.c.stop()
         #thread.exit()

@@ -1,33 +1,41 @@
 __author__ = 'Jack'
 
-import socket               # Import socket module
+import listener
 
 
-class Client:
+class Client(listener.Listener):
 
-    def __init__(self):
-        self.host = socket.gethostname() # Get local machine name
-        self.port = 12345                # Reserve a port for your service.
+    def __init__(self, host, port):
+        listener.Listener.__init__(self, host, port)
+        self.host = host  # Get local machine name
+        self.port = port                # Reserve a port for your service.
+
+    def start(self, host, port):
+        self.s.start()
+        self.s.connect(host, port)
 
     def upload(self, file_name):
-        s = socket.socket()         # Create a socket object
+        #s = socket.socket()         # Create a socket object
 
-        s.connect((self.host, self.port))     # print recieved data
+        #s.connect((self.host, self.port))     # print recieved data
 
-        s.send(file_name)
+        self.s.send(file_name)
         readByte=open(file_name,"rb")       #read file
         data = readByte.read()
         readByte.close()
 
-        s.send(data)
-        s.close                     # Close the socket when done
+        self.s.send(data)
         
     def send_message(self, message): 
-        s = socket.socket()         # Create a socket object
+        #self.s = socket.socket()         # Create a socket object
 
-        s.connect((self.host, self.port))     # print recieved data
+        #self.s.connect((self.host, self.port))     # print recieved data
 
-        s.send(message)
+        self.s.send(message)
 
-        s.close                     # Close the socket when done
+    def on_message(self, addr, data):
+        print addr, data
 
+    def stop(self):
+        self.s.disconnect()
+        self.s.stop()

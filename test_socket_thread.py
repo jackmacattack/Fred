@@ -13,7 +13,7 @@ class TestListener(listener.Listener):
         self.test.assertTrue(data == "Love")
 
 
-class TestClient(unittest.TestCase):
+class TestSocketThread(unittest.TestCase):
 
     thread1 = None
     thread2 = None
