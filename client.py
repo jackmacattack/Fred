@@ -1,6 +1,7 @@
 __author__ = 'Jack'
 
 import listener
+import os
 
 
 class Client(listener.Listener):
@@ -23,6 +24,9 @@ class Client(listener.Listener):
         readByte=open(file_name,"rb")       #read file
         data = readByte.read()
         readByte.close()
+
+        size = os.path.getsize(file_name)   #send the file size(needed for recv())
+        self.s.send(str(size))
 
         self.s.send(data)
         
