@@ -27,6 +27,7 @@ def main() :
         #search database for username...print password?
     if command == 'admin' :
         #go to different admin userface
+        print 'Going to admin interface...'
     if command == 0 :
         print 'Goodbye!'
 

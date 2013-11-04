@@ -12,10 +12,14 @@ class TestEventHandler(FileSystemEventHandler):
         file_changed = event.src_path
         print "What type of change: " + type_change
         print "What file was modified: " + file_changed
-        if type_change == 'created' | 'modified' :
+        if type_change == 'created' :
             #upload(file_changed)
             print 'uploaded'
+        if type_change == 'modified' :
+            #upload(file_changed)
+            print 're-uploaded'
         if type_change == 'deleted' :
+            #remove(file_changed)
             #delete file from server
             print 'deleted'
 
