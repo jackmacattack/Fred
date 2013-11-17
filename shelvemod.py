@@ -27,6 +27,13 @@ class DataFile:
 
         return False
 
+    def verify(self, name, pword):
+        if(self.data.has_key(name) == True):
+            if(self.data[name]['password'] == pword):
+                return True
+
+        return False
+
     def change_filecount(self, name, count):
         d = self.data[name]
         d['file_count'] = count
@@ -38,6 +45,11 @@ class DataFile:
             return d['password']
 
         return False
+
+    def admin_pword_change(self, name, pword):
+        d = self.data[name]
+        d['password'] = pword
+        self.data[name] = d
 
     def remove_user(self, name):
         del self.data[name]

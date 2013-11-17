@@ -27,6 +27,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+    <SUITE FILE_PATH="coverage/Fred$test_shelve.coverage" NAME="test_shelve Coverage Results" MODIFIED="1383596533070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -210,6 +211,24 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Fred" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testshelve.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -264,6 +283,8 @@
       <method />
     </configuration>
     <configuration default="false" name="Test Client" type="tests" factoryName="Unittests">
+      <method />
+    </configuration>
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -342,6 +363,7 @@
       <item index="0" class="java.lang.String" itemvalue="Python tests.Test Client" />
       <item index="1" class="java.lang.String" itemvalue="Python tests.Test Socket Thread" />
       <item index="2" class="java.lang.String" itemvalue="Python tests.Test Server" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test_shelve" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -468,6 +490,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/testshelve.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="316" selection-end="316" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="345">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shelvemod.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="0" selection-start="753" selection-end="753" vertical-scroll-proportion="0.0" vertical-offset="24" max-vertical-offset="825">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testshelve.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="316" selection-end="316" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="345">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shelvemod.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="24" selection-start="1204" selection-end="1204" vertical-scroll-proportion="0.0" vertical-offset="24" max-vertical-offset="825">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testshelve.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="316" selection-end="316" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="345">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shelvemod.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="31" selection-start="880" selection-end="880" vertical-scroll-proportion="0.0" vertical-offset="78" max-vertical-offset="750">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shelvemod.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="31" selection-start="880" selection-end="880" vertical-scroll-proportion="0.0" vertical-offset="78" max-vertical-offset="750">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shelvemod.py">
+      <provider selected="true" editor-type-id="text-editor">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test_server.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="12" selection-start="118" selection-end="118" vertical-scroll-proportion="0.0">
@@ -541,6 +618,13 @@
     <entry file="file://$PROJECT_DIR$/client.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="54" column="36" selection-start="1410" selection-end="1410" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testshelve.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="316" selection-end="316" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
           <folding />
         </state>
       </provider>
