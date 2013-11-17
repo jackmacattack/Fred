@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="848aec9e-fd24-4d50-89b1-549f998dd8c5" name="Default" comment="Shelve module for username/password info. First commit.">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.txt.db" afterPath="$PROJECT_DIR$/test.txt.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shelvemod.py" afterPath="$PROJECT_DIR$/shelvemod.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -15,7 +16,8 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Fred$test_shelve.coverage" NAME="test_shelve Coverage Results" MODIFIED="1383404152183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Fred$testshelve.coverage" NAME="testshelve Coverage Results" MODIFIED="1383596772660" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Fred$test_shelve.coverage" NAME="test_shelve Coverage Results" MODIFIED="1383596533070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -32,7 +34,16 @@
       <file leaf-file-name="shelvemod.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/shelvemod.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="31" selection-start="880" selection-end="880" vertical-scroll-proportion="0.63917524" vertical-offset="78" max-vertical-offset="750">
+            <state line="33" column="20" selection-start="959" selection-end="959" vertical-scroll-proportion="0.8505155" vertical-offset="0" max-vertical-offset="930">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="testshelve.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testshelve.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="0" selection-start="316" selection-end="316" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="345">
               <folding />
             </state>
           </provider>
@@ -62,6 +73,7 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/test_shelve.py" />
+        <option value="$PROJECT_DIR$/testshelve.py" />
         <option value="$PROJECT_DIR$/shelvemod.py" />
       </list>
     </option>
@@ -124,12 +136,12 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="C:/Python27/python.exe" />
+    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../testing" />
     <property name="FullScreen" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -139,7 +151,7 @@
       <PyConsoleSettings />
     </option>
   </component>
-  <component name="RunManager" selected="Python.test_shelve">
+  <component name="RunManager" selected="Python.testshelve">
     <configuration default="false" name="test_shelve" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -154,6 +166,25 @@
       <module name="Fred" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_shelve.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="testshelve" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Fred" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testshelve.py" />
       <option name="PARAMETERS" value="" />
       <RunnerSettings RunnerId="PythonRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
@@ -243,6 +274,9 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+      <method />
+    </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -264,9 +298,6 @@
       <option name="PUREUNITTEST" value="true" />
       <option name="PARAMS" value="" />
       <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -309,12 +340,14 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Python.test_shelve" />
+      <item index="1" class="java.lang.String" itemvalue="Python.testshelve" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Python.test_shelve" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Python.testshelve" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test_shelve" />
       </list>
     </recent_temporary>
   </component>
@@ -398,6 +431,62 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/shelvemod.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="0" selection-start="753" selection-end="753" vertical-scroll-proportion="0.0" vertical-offset="24" max-vertical-offset="825">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testshelve.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="316" selection-end="316" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="345">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shelvemod.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="0" selection-start="753" selection-end="753" vertical-scroll-proportion="0.0" vertical-offset="24" max-vertical-offset="825">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testshelve.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="316" selection-end="316" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="345">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shelvemod.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="24" selection-start="1204" selection-end="1204" vertical-scroll-proportion="0.0" vertical-offset="24" max-vertical-offset="825">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testshelve.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="316" selection-end="316" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="345">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shelvemod.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="31" selection-start="880" selection-end="880" vertical-scroll-proportion="0.0" vertical-offset="78" max-vertical-offset="750">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shelvemod.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="31" selection-start="880" selection-end="880" vertical-scroll-proportion="0.0" vertical-offset="78" max-vertical-offset="750">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shelvemod.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="39" selection-start="355" selection-end="355" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
           <folding />
         </state>
@@ -410,9 +499,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/testshelve.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="316" selection-end="316" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/shelvemod.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="31" selection-start="880" selection-end="880" vertical-scroll-proportion="0.63917524" vertical-offset="78" max-vertical-offset="750">
+        <state line="33" column="20" selection-start="959" selection-end="959" vertical-scroll-proportion="0.8505155" vertical-offset="0" max-vertical-offset="930">
           <folding />
         </state>
       </provider>
