@@ -17,6 +17,7 @@ def on_account_created() :
 def on_found_password( password ) :
     print 'Your password is ' + password
     print 'Please sign in with this information. '
+    main()
 
 def on_incorrect_found_password( ) :
     print 'Wrong security answer. Please try again. '
