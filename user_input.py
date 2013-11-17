@@ -1,9 +1,20 @@
 from shelvemod import DataFile
+import client
 
 d = DataFile("test.txt")
 
-def main() :
+def on_login_success() :
+    print 'You have successfully logged in to your OneDir account.'
 
+def on_login_failure() :
+    print 'Incorrect username or password.'
+    main()
+
+def on_account_created() :
+    print 'Account created! Please log in to the server now. '
+    main()
+
+def main() :
     print 'Hello! Welcome to OneDir.'
     print 'If you already have a OneDir account, please enter 1.'
     print 'If you would like to create an account, please enter 2.'
@@ -16,25 +27,12 @@ def main() :
         username = raw_input( 'Username: ')
         password = raw_input( 'Password: ')
 
-        while( d.username_available(username) == True or d.get_info(username)['password'] != password):
-            print ('Wrong username or password, please reenter information')
-            username = raw_input( 'Username: ')
-            password = raw_input( 'Password: ')
-
-        if(d.username_available(username) == False):
-            if(d.get_info(username)['password'] == password):
-                print 'You have successfully signed into your OneDir account'
-                #start watchdog here
-
+        client.send_credentials( username, password )
 
     if command == 2 :
         new_username = raw_input( 'What would you like your username to be? ')
-
-        while d.username_available(new_username) == False:
-            new_username = raw_input( 'Username already taken, please enter a new username: ')
-
         new_password = raw_input( 'What would you like your password to be? ')
-        new_password2 = raw_input( 'Please re-enter your password. ')
+        new_password2 = raw_input( 'Please re-enter your password. ' )
 
         while new_password != new_password2:
             print 'Passwords do not match, please reenter passwords'
@@ -44,15 +42,13 @@ def main() :
         password_question = raw_input( 'Please enter a security question: ')
         password_answer = raw_input( 'Answer to question: ')
 
-        d.add_user(new_username, new_password, password_question, password_answer, 0)
-
-        if new_password == new_password2:
-            print 'Account successfully created for ' + new_username + '!'
+        client.create_account( new_username, new_password, password_question, password_answer )
 
     if command == 3 :
         x = 0
         find_username = raw_input( 'Please enter your username: ' )
-        security_answer = raw_input(d.get_info(find_username)['question'] +': ')
+        security_answer = raw_input( 'Please enter your security answer: ' )
+        client.forgotten_password( find_username, security_answer )
 
         while x != 3 and d.get_info(find_username)['answer'] != security_answer:
             x = x + 1
