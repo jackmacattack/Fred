@@ -24,7 +24,7 @@ def main() :
         if(d.username_available(username) == False):
             if(d.get_info(username)['password'] == password):
                 print 'You have successfully signed into your OneDir account'
-                #start watch dog here
+                #start watchdog here
 
 
     if command == 2 :
