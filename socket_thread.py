@@ -42,6 +42,7 @@ class SocketThread:
 
             c.close()                # Close the connection
 
+        s.close()
         thread.exit()
 
     def send(self, data):
@@ -57,5 +58,9 @@ class SocketThread:
 
     def stop(self):
         self.exit = True
-        self.connect(self.host, self.port)
-        self.disconnect()
+
+        try:
+            self.connect(self.host, self.port)
+            self.disconnect()
+        except socket.error:
+            pass

@@ -20,15 +20,16 @@ class Client(listener.Listener):
 
         #s.connect((self.host, self.port))     # print recieved data
 
-        self.s.send(file_name)
+        size = os.path.getsize(file_name)   #send the file size(needed for recv())
+
+        self.s.send("Message;Upload;", file_name, ";", str(size))
+
+    def send_file(self, file_name):
         readByte=open(file_name,"rb")       #read file
         data = readByte.read()
         readByte.close()
 
-        size = os.path.getsize(file_name)   #send the file size(needed for recv())
-        self.s.send(str(size))
-
-        self.s.send(data)
+        self.s.send("File;", data)
         
     def send_message(self, message): 
         #self.s = socket.socket()         # Create a socket object
@@ -39,6 +40,19 @@ class Client(listener.Listener):
 
     def on_message(self, addr, data):
         print addr, data
+
+        arr = data.split(":")
+
+        if arr[0] == "Received":
+            pass
+
+        elif arr[0] == "UserAdd":
+            pass
+
+        elif arr[0] == "File":
+
+            if arr[1] == "Send":
+                self.send_file(arr[2])
 
     def stop(self):
         self.s.disconnect()

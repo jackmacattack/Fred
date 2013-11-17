@@ -9,6 +9,9 @@ class TestClient(unittest.TestCase):
 
     def server(self):
         s = socket.socket()         # Create a socket object
+
+        #s.settimeout(5)
+
         host = socket.gethostname() # Get local machine name
         port = 12345                # Reserve a port for your service.
 
@@ -16,19 +19,27 @@ class TestClient(unittest.TestCase):
 
         s.listen(5)                 # Now wait for client connection.
 
-        for i in range(10000):
-            c, addr = s.accept()     # Establish connection with client.
+        self.exit = False
+        while not self.exit:
+            try:
+                c, addr = s.accept()     # Establish connection with client.
 
-            name = c.recv(1024)     # create the file
-            print name
-            if name[-4:] == ".dat":
-                name = c.recv(1024)
+                name = c.recv(1024)     # create the file
+                print name
+                if name[-4:] == ".dat":
+                    name = c.recv(1024)
 
-            if name == "Love":
-                self.server_test = True
-                thread.exit()
+                if name == "Love":
+                    self.server_test = True
+                    self.exit = True
 
-            c.close()                # Close the connection
+                c.close()                # Close the connection
+            except socket.error:
+                pass
+
+        print "Exiting..."
+        s.close()
+        thread.exit()
 
     def setUp(self):    #Sets up a test server
         server_test = False
@@ -57,4 +68,5 @@ class TestClient(unittest.TestCase):
 
     def tearDown(self):
         self.c.stop()
+        self.exit = True
         #thread.exit()
