@@ -2,7 +2,6 @@ __author__ = 'Jack'
 
 import listener
 import os
-import user_input
 
 
 class Client(listener.Listener):
@@ -39,16 +38,31 @@ class Client(listener.Listener):
 
         self.s.send(message)
 
+    def begin(self):
+        print "Here"
+        user_input.start()
+
     def on_message(self, addr, data):
         print addr, data
 
         arr = data.split(":")
 
         if arr[0] == "Received":
-            pass
+            print "Love"
+            self.begin()
 
-        elif arr[0] == "UserAdd":
-            pass
+        elif arr[0] == "Add":
+            if arr[1] == "Success":
+                user_input.on_account_created()
+
+        elif arr[0] == "Login":
+            if arr[1] == "Success":
+                user_input.on_login_success()
+            else:
+                user_input.on_login_failure()
+
+        elif arr[0] == "Password":
+            user_input.on_found_password()
 
         elif arr[0] == "File":
 
@@ -67,3 +81,5 @@ class Client(listener.Listener):
 
     def forgotten_password_check(self, username, answer ):
         self.send_message("RecoverPW;", username, ";", answer)
+
+import user_input

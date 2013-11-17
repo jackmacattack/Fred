@@ -36,7 +36,6 @@ class Server(listener.Listener):
         return True
 
     def on_message(self, addr, data):
-        print addr, data
 
         arr = data.split(";")
         message = "Love"
@@ -84,7 +83,6 @@ class Server(listener.Listener):
         else:
             pass
 
-        print self.session[addr[0]]
         self.s.connect(self.session[addr[0]][0], self.session[addr[0]][1])
         self.s.send(message)
         self.s.disconnect()

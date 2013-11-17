@@ -1,18 +1,22 @@
 from shelvemod import DataFile
-import client
+from client import *
+import server
+import time
 
 d = DataFile("test.txt")
+flag = True
+c = Client("localhost", 12345)
 
 def on_login_success() :
     print 'You have successfully logged in to your OneDir account.'
 
 def on_login_failure() :
     print 'Incorrect username or password. Please try again.'
-    main()
+    start()
 
 def on_account_created() :
     print 'Account created! Please log in to the server now.'
-    main()
+    start()
 
 def on_found_password( password ) :
     print 'Your password is ' + password
@@ -20,10 +24,17 @@ def on_found_password( password ) :
 
 def on_incorrect_found_password( ) :
     print 'Wrong security answer. Please try again. '
-    main()
+    start()
 
+def main():
+    s = server.Server("localhost", 12344, "test.txt")
+    s.start()
 
-def main() :
+    c.start("localhost", 12344)
+
+    c.send_message("Connect;localhost;12345")
+
+def start() :
     print 'Hello! Welcome to OneDir.'
     print 'If you already have a OneDir account, please enter 1.'
     print 'If you would like to create an account, please enter 2.'
@@ -36,7 +47,7 @@ def main() :
         username = raw_input( 'Username: ')
         password = raw_input( 'Password: ')
 
-        client.send_credentials( username, password )
+        c.send_credentials( username, password )
 
     if command == 2 :
         new_username = raw_input( 'What would you like your username to be? ')
@@ -51,12 +62,14 @@ def main() :
         password_question = raw_input( 'Please enter a security question: ')
         password_answer = raw_input( 'Answer to question: ')
 
-        client.create_account( new_username, new_password, password_question, password_answer )
+        c.create_account( new_username, new_password, password_question, password_answer )
 
     if command == 3 :
 
         find_username = raw_input( 'Please enter your username: ' )
         security_answer = raw_input( 'Please enter your security answer: ' )
 
-        client.forgotten_password( find_username, security_answer )
+        c.forgotten_password( find_username, security_answer )
 
+if __name__ == '__main__':
+    main()
