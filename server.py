@@ -2,17 +2,18 @@ __author__ = 'Jack'
 
 import listener
 import os
+import shelvemod
 
 
 class Server(listener.Listener):
 
-    def __init__(self, host, port):
+    def __init__(self, host, port, db_location):
         listener.Listener.__init__(self, host, port)
         self.host = host  # Get local machine name
         self.port = port                # Reserve a port for your service.
 
-
         self.session = {}
+        self.db = shelvemod.DataFile(db_location)
 
     def start(self):
         self.s.start()
@@ -46,15 +47,20 @@ class Server(listener.Listener):
             message = "Received"
 
         elif arr[0] == "Add":
-            pass
+
+            if self.db.username_available(arr[1]):
+                self.db.add_user(arr[1], arr[2], arr[3], arr[4], 0)
+                message = "Add;Success"
+            else:
+                message = "Add;NameTaken"
 
         elif arr[0] == "Login":
 
             if self.auth(arr[1], arr[2]):
                 self.session[addr[0]][2] = arr[1]
-                message = "Success"
+                message = "Login;Success"
             else:
-                message = "Failure"
+                message = "Login;Failure"
 
         elif arr[0] == "Message":
 
