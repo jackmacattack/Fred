@@ -2,6 +2,7 @@ __author__ = 'Jack'
 
 import listener
 import os
+import user_input
 
 
 class Client(listener.Listener):
@@ -59,10 +60,10 @@ class Client(listener.Listener):
         self.s.stop()
         
     def send_credentials(self, username, password) :
-        pass
+        self.send_message("Login;", username, ";", password)
 
-    def create_account( new_username, new_password, password_question, password_answer ) :
-        pass
+    def create_account(self, new_username, new_password, password_question, password_answer ) :
+        self.send_message("Add;", new_username, ";", new_password, ";", password_question, ";", password_answer)
 
     def forgotten_password_check(self, username, answer ):
-        pass
+        self.send_message("RecoverPW;", username, ";", answer)

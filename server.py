@@ -74,6 +74,13 @@ class Server(listener.Listener):
             self.saveFile(self.session[addr[0]][2], self.session[addr[0]][3], data)
             message = "File;Success"
 
+        elif arr[0] == "RecoverPW":
+
+            if not self.db.retrieve_password(arr[1], arr[2]):
+                message = "PasswordFail"
+            else:
+                message = "Password;"
+
         else:
             pass
 
