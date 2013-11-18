@@ -39,7 +39,7 @@ class Client(listener.Listener):
         self.s.send(message)
 
     def on_message(self, addr, data):
-        print "Server to Client:",addr, data
+        #print "Server to Client:",addr, data
 
         arr = data.split(";")
 

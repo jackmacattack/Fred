@@ -36,7 +36,7 @@ class Server(listener.Listener):
         return self.db.verify(username, password)
 
     def on_message(self, addr, data):
-        print "Client to Server:", addr, data
+        #print "Client to Server:", addr, data
 
         arr = data.split(";")
         message = "Love"

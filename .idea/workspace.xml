@@ -2,17 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="848aec9e-fd24-4d50-89b1-549f998dd8c5" name="Default" comment="Shelve module for username/password info. First commit.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/localhost_test.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client.py" afterPath="$PROJECT_DIR$/client.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run_server.py" afterPath="$PROJECT_DIR$/run_server.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.py" afterPath="$PROJECT_DIR$/server.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/user_input.py" afterPath="$PROJECT_DIR$/user_input.py" />
     </list>
     <ignored path="Fred.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="848aec9e-fd24-4d50-89b1-549f998dd8c5" time="1384802563910" ignored="false" />
-    <file path="/client.py" changelist="848aec9e-fd24-4d50-89b1-549f998dd8c5" time="1384786034858" ignored="false" />
+    <file path="/Dummy.txt" changelist="848aec9e-fd24-4d50-89b1-549f998dd8c5" time="1384806802324" ignored="false" />
+    <file path="/client.py" changelist="848aec9e-fd24-4d50-89b1-549f998dd8c5" time="1384807281427" ignored="false" />
     <file path="/test_client.py" changelist="848aec9e-fd24-4d50-89b1-549f998dd8c5" time="1384444870834" ignored="false" />
-    <file path="/server.py" changelist="848aec9e-fd24-4d50-89b1-549f998dd8c5" time="1384786993588" ignored="false" />
+    <file path="/server.py" changelist="848aec9e-fd24-4d50-89b1-549f998dd8c5" time="1384807285991" ignored="false" />
     <file path="/SocketThread.py" changelist="848aec9e-fd24-4d50-89b1-549f998dd8c5" time="1383571552293" ignored="false" />
     <file path="/connector.py" changelist="848aec9e-fd24-4d50-89b1-549f998dd8c5" time="1383573019823" ignored="false" />
     <file path="/test_connector.py" changelist="848aec9e-fd24-4d50-89b1-549f998dd8c5" time="1383571777332" ignored="false" />
@@ -22,7 +21,7 @@
     <file path="/test_listener.py" changelist="848aec9e-fd24-4d50-89b1-549f998dd8c5" time="1383572957181" ignored="false" />
     <file path="/test.server.py" changelist="848aec9e-fd24-4d50-89b1-549f998dd8c5" time="1383595101314" ignored="false" />
     <file path="/test_server.py" changelist="848aec9e-fd24-4d50-89b1-549f998dd8c5" time="1384700797802" ignored="false" />
-    <file path="/user_input.py" changelist="848aec9e-fd24-4d50-89b1-549f998dd8c5" time="1384787012279" ignored="false" />
+    <file path="/user_input.py" changelist="848aec9e-fd24-4d50-89b1-549f998dd8c5" time="1384807175468" ignored="false" />
     <file path="/run_server.py" changelist="848aec9e-fd24-4d50-89b1-549f998dd8c5" time="1384802755841" ignored="false" />
     <file path="/localhost_test.py" changelist="848aec9e-fd24-4d50-89b1-549f998dd8c5" time="1384802822572" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -44,10 +43,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="server.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="server.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="48" selection-start="1127" selection-end="1127" vertical-scroll-proportion="0.0">
+            <state line="38" column="9" selection-start="1177" selection-end="1177" vertical-scroll-proportion="1.3133047">
               <folding />
             </state>
           </provider>
@@ -56,10 +55,8 @@
       <file leaf-file-name="user_input.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/user_input.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="289" selection-end="289" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#30#0" expanded="true" />
-              </folding>
+            <state line="46" column="90" selection-start="1155" selection-end="1155" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -68,9 +65,7 @@
         <entry file="file://$PROJECT_DIR$/localhost_test.py">
           <provider selected="true" editor-type-id="text-editor">
             <state line="13" column="17" selection-start="172" selection-end="172" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#1#18#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -93,10 +88,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="client.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="client.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="77" column="26" selection-start="2230" selection-end="2230" vertical-scroll-proportion="0.67167383">
+            <state line="41" column="9" selection-start="1158" selection-end="1158" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -145,11 +140,11 @@
         <option value="$PROJECT_DIR$/shelvemod.py" />
         <option value="$PROJECT_DIR$/admin_interface.py" />
         <option value="$PROJECT_DIR$/socket_thread.py" />
-        <option value="$PROJECT_DIR$/server.py" />
-        <option value="$PROJECT_DIR$/user_input.py" />
         <option value="$PROJECT_DIR$/run_server.py" />
         <option value="$PROJECT_DIR$/localhost_test.py" />
+        <option value="$PROJECT_DIR$/user_input.py" />
         <option value="$PROJECT_DIR$/client.py" />
+        <option value="$PROJECT_DIR$/server.py" />
       </list>
     </option>
   </component>
@@ -185,6 +180,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -195,19 +191,18 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/localhost_test.py" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/localhost_test.py" />
     <property name="FullScreen" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -480,11 +475,11 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12162162" sideWeight="0.68238556" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12290862" sideWeight="0.68238556" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31761444" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31761444" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33052278" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -580,9 +575,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/admin_interface.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="27" selection-start="136" selection-end="136" vertical-scroll-proportion="0.1506647">
-          <folding />
-        </state>
+        <state line="6" column="27" selection-start="136" selection-end="136" vertical-scroll-proportion="0.1506647" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/shelvemod.py">
@@ -616,22 +609,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="48" selection-start="1127" selection-end="1127" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user_input.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="289" selection-end="289" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/socket_thread.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="48" column="17" selection-start="1195" selection-end="1195" vertical-scroll-proportion="0.0">
@@ -649,15 +626,27 @@
     <entry file="file://$PROJECT_DIR$/localhost_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="17" selection-start="172" selection-end="172" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#1#18#0" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user_input.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="90" selection-start="1155" selection-end="1155" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="26" selection-start="2230" selection-end="2230" vertical-scroll-proportion="0.67167383">
+        <state line="41" column="9" selection-start="1158" selection-end="1158" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="9" selection-start="1177" selection-end="1177" vertical-scroll-proportion="1.3133047">
           <folding />
         </state>
       </provider>
