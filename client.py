@@ -75,7 +75,7 @@ class Client(listener.Listener):
     def create_account(self, new_username, new_password, password_question, password_answer ) :
         self.send_message("Add;" + new_username + ";" + new_password + ";" + password_question + ";" + password_answer)
 
-    def forgotten_password_check(self, username, answer ):
+    def forgotten_password(self, username, answer ):
         self.send_message("RecoverPW;" + username + ";" + answer)
 
 import user_input
