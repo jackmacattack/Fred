@@ -1,7 +1,9 @@
 __author__ = 'Jack'
 
 
-import socket, thread
+import socket
+import thread
+import threading
 
 
 class SocketThread:
@@ -15,10 +17,12 @@ class SocketThread:
         self.l = l
         self.connected = False
         self.exit = False
+        self.t = threading.Thread(name='server', target=self.listen)
 
     def start(self):
         self.exit = False
-        thread.start_new_thread(self.listen, ())
+        #thread.start_new_thread(self.listen, ())
+        self.t.start()
 
     def connect(self, host, port):
         if host == "localhost":
@@ -28,28 +32,34 @@ class SocketThread:
         self.connected = True
 
     def listen(self):
-        s = socket.socket()
+        try:
+            s = socket.socket()
 
-        s.bind((self.host, self.port))        # Bind to the port
+            s.bind((self.host, self.port))        # Bind to the port
 
-        s.listen(5)                 # Now wait for client connection.
+            s.listen(5)                 # Now wait for client connection.
 
-        while not self.exit:
-            c, addr = s.accept()     # Establish connection with client.
-            data = c.recv(1024)     # create the file
-            if data:
-                self.l.on_message(addr, data)
+            while not self.exit:
+                c, addr = s.accept()     # Establish connection with client.
+                data = c.recv(1024)     # create the file
+                if data:
+                    self.l.on_message(addr, data)
 
-            c.close()                # Close the connection
+                c.close()                # Close the connection
 
-        s.close()
-        thread.exit()
+            s.close()
+            #thread.exit()
+
+        except Exception:
+            print "Trace..."
+            import traceback
+            print traceback.format_exc()
 
     def send(self, data):
         if self.connected:
             self.s.send(data)
         else:
-            print "Not Connected"
+            print "Not Connected. Message: ", data, " not sent."
 
     def disconnect(self):
         self.s.close()

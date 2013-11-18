@@ -38,31 +38,26 @@ class Client(listener.Listener):
 
         self.s.send(message)
 
-    def begin(self):
-        print "Here"
-        user_input.start()
-
     def on_message(self, addr, data):
-        print addr, data
+        print "Server to Client:",addr, data
 
-        arr = data.split(":")
+        arr = data.split(";")
 
         if arr[0] == "Received":
-            print "Love"
-            self.begin()
+            user_input.start(self)
 
         elif arr[0] == "Add":
             if arr[1] == "Success":
-                user_input.on_account_created()
+                user_input.on_account_created(self)
 
         elif arr[0] == "Login":
             if arr[1] == "Success":
-                user_input.on_login_success()
+                user_input.on_login_success(self)
             else:
-                user_input.on_login_failure()
+                user_input.on_login_failure(self)
 
         elif arr[0] == "Password":
-            user_input.on_found_password()
+            user_input.on_found_password(self)
 
         elif arr[0] == "File":
 
@@ -74,12 +69,13 @@ class Client(listener.Listener):
         self.s.stop()
         
     def send_credentials(self, username, password) :
-        self.send_message("Login;", username, ";", password)
+
+        self.send_message("Login;" + username + ";" + password)
 
     def create_account(self, new_username, new_password, password_question, password_answer ) :
-        self.send_message("Add;", new_username, ";", new_password, ";", password_question, ";", password_answer)
+        self.send_message("Add;" + new_username + ";" + new_password + ";" + password_question + ";" + password_answer)
 
     def forgotten_password_check(self, username, answer ):
-        self.send_message("RecoverPW;", username, ";", answer)
+        self.send_message("RecoverPW;" + username + ";" + answer)
 
 import user_input

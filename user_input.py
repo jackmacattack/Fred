@@ -3,44 +3,47 @@ from client import *
 import server
 import time
 
-d = DataFile("test.txt")
-flag = True
-c = Client("localhost", 12345)
-
-def on_login_success() :
+def on_login_success(c) :
     print 'You have successfully logged in to your OneDir account.'
 
-def on_login_failure() :
+def on_login_failure(c) :
     print 'Incorrect username or password. Please try again.'
-    start()
+    start(c)
 
-def on_account_created() :
+def on_account_created(c) :
     print 'Account created! Please log in to the server now.'
-    start()
+    start(c)
 
-def on_found_password( password ) :
+def on_found_password( c, password ) :
     print 'Your password is ' + password
     print 'Please sign in with this information. '
 
-def on_incorrect_found_password( ) :
+def on_incorrect_found_password(c) :
     print 'Wrong security answer. Please try again. '
-    start()
+    start(c)
 
 def main():
+
+    c = Client("localhost", 12345)
+
     s = server.Server("localhost", 12344, "test.txt")
     s.start()
 
+    time.sleep(2)
+
     c.start("localhost", 12344)
+
+    #time.sleep(2)
 
     c.send_message("Connect;localhost;12345")
 
-def start() :
+def start(c) :
     print 'Hello! Welcome to OneDir.'
     print 'If you already have a OneDir account, please enter 1.'
     print 'If you would like to create an account, please enter 2.'
     print 'If you already have an account, but do not remember the password, enter 3.'
     print 'If you are an admin, please enter 4.'
-    print 'If you dont want to use OneDir, enter 0.'
+    print 'If you don\'t want to use OneDir, enter 0.'
     command = input( "Enter number here: " )
 
     if command == 1 :

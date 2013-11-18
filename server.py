@@ -36,6 +36,7 @@ class Server(listener.Listener):
         return True
 
     def on_message(self, addr, data):
+        print "Client to Server:", addr, data
 
         arr = data.split(";")
         message = "Love"
