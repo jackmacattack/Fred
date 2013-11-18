@@ -25,6 +25,10 @@ class SocketThread:
         self.t.start()
 
     def connect(self, host, port):
+
+        self.other_host = host
+        self.other_port = port
+
         if host == "localhost":
             host = socket.gethostname()
 
@@ -40,12 +44,15 @@ class SocketThread:
             s.listen(5)                 # Now wait for client connection.
 
             while not self.exit:
+                #print "Start Again"
                 c, addr = s.accept()     # Establish connection with client.
+                #print "Accept"
                 data = c.recv(1024)     # create the file
-                if data:
-                    self.l.on_message(addr, data)
 
                 c.close()                # Close the connection
+
+                if data:
+                    self.l.on_message(addr, data)
 
             s.close()
             #thread.exit()
@@ -58,8 +65,14 @@ class SocketThread:
     def send(self, data):
         if self.connected:
             self.s.send(data)
+
+            self.reset()
         else:
             print "Not Connected. Message: ", data, " not sent."
+
+    def reset(self):
+        self.disconnect()
+        self.connect(self.other_host, self.other_port)
 
     def disconnect(self):
         self.s.close()

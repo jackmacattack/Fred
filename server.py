@@ -33,7 +33,7 @@ class Server(listener.Listener):
         createFile.close()
 
     def auth(self, username, password):
-        return True
+        return self.db.verify(username, password)
 
     def on_message(self, addr, data):
         print "Client to Server:", addr, data
