@@ -13,7 +13,6 @@ class DataFile:
     def username_available(self, name):
         if (self.data.has_key(name) == True):
             return False
-
         else:
             return True
 

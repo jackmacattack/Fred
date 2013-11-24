@@ -11,13 +11,14 @@ class Client(listener.Listener):
         listener.Listener.__init__(self, host, port)
         self.host = host  # Get local machine name
         self.port = port                # Reserve a port for your service.
+        self.stop = False
 
         #GUI
         #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         self.f = Frame(parent)
         self.f.pack(padx=15,pady=15)
         self.warning = Label(text='Connecting, please wait...')
-        self.warning.pack(side = TOP)
+        # self.warning.pack(side = TOP)
 
         #Button's wont show until server/client connection is made
         self.log = Button(self.f, text='Log in', command=self.login)
@@ -77,7 +78,7 @@ class Client(listener.Listener):
         self.password_retrieve_label = Label(self.f, text='Your password is: ')
 
         self.exit = Button(self.f, text="exit", command=self.f.quit)
-        self.exit.pack(side=BOTTOM,padx=10,pady=10)
+        # self.exit.pack(side=BOTTOM,padx=10,pady=10)
 
         #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -117,7 +118,7 @@ class Client(listener.Listener):
         if arr[0] == "Received":
             #where userinput normally starts
             #user_input.start(self)
-            self.warning.destroy()
+            # self.warning.destroy()
             self.log.pack()
             self.create.pack()
             self.forgot.pack()
@@ -179,7 +180,7 @@ class Client(listener.Listener):
         self.create.pack()
 
     def creation(self):
-        self.log.destroy()
+        # self.log.destroy()
         self.create.destroy()
         self.create_user_label.pack()
         self.create_user_entry.pack()
