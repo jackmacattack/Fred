@@ -2,6 +2,8 @@ from shelvemod import DataFile
 from client import *
 import server
 import time
+from Tkinter import *
+
 
 def on_login_success(c) :
     print 'You have successfully logged in to your OneDir account.'
@@ -15,6 +17,10 @@ def on_account_created(c) :
     print 'Account created! Please log in to the server now.'
     start(c)
 
+def on_account_creation_failure(c) :
+    print 'Username not accepted, please try again'
+    start(c)
+
 def on_found_password( c, password ) :
     print 'Your password is ' + password
     print 'Please sign in with this information. '
@@ -25,8 +31,10 @@ def on_incorrect_found_password(c) :
     start(c)
 
 def main():
+    root = Tk()
+    root.title('OneDir')
 
-    c = Client("localhost", 12345)
+    c = Client("localhost", 12345, root)
 
     #time.sleep(2)
 
@@ -35,6 +43,11 @@ def main():
     #time.sleep(2)
 
     c.send_message("Connect;localhost;12345")
+
+    root.mainloop()
+
+
+
 
 def start(c) :
     print 'Hello! Welcome to OneDir.'
@@ -73,5 +86,7 @@ def start(c) :
 
         c.forgotten_password( find_username, security_answer )
 
+
 if __name__ == '__main__':
     main()
+
