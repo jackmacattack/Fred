@@ -16,8 +16,7 @@ class Client(listener.Listener):
         #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         self.f = Frame(parent)
         self.f.pack(padx=15,pady=15)
-        self.warning = Label(text='Connecting, please wait...')
-        self.warning.pack(side = TOP)
+
 
         #Button's wont show until server/client connection is made
         self.log = Button(self.f, text='Log in', command=self.login)
@@ -117,7 +116,6 @@ class Client(listener.Listener):
         if arr[0] == "Received":
             #where userinput normally starts
             #user_input.start(self)
-            self.warning.destroy()
             self.log.pack()
             self.create.pack()
             self.forgot.pack()
@@ -144,7 +142,7 @@ class Client(listener.Listener):
 
         elif arr[0] == "Password":
                 #prints out password
-            #user_input.on_found_password(self)
+            #user_input.on_found_password(self, arr[1])
             self.password_retrieve_label.pack()
 
         elif arr[0] == "File":
@@ -155,6 +153,18 @@ class Client(listener.Listener):
     def stop(self):
         self.s.disconnect()
         self.s.stop()
+
+    def start_sync(self):
+        pass
+
+    def stop_sync(self):
+        pass
+
+    def logout(self):
+        pass
+
+    def password_change(self):
+        pass
 
     def send_credentials(self) :
         self.send_message("Login;" + self.user_entry.get() + ";" + self.pass_entry.get())
