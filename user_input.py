@@ -1,7 +1,6 @@
-from shelvemod import DataFile
+
+import socket
 from client import *
-import server
-import time
 
 def on_login_success(c) :
     print 'You have successfully logged in to your OneDir account.'
@@ -26,15 +25,17 @@ def on_incorrect_found_password(c) :
 
 def main():
 
-    c = Client("localhost", 12345)
+    c = Client("Jacktop", 12345)
 
     #time.sleep(2)
 
-    c.start("localhost", 12344)
+    #c.start("d-172-25-108-139.bootp.virginia.edu", 12344)
+    c.start("172.25.109.54", 12344)
 
     #time.sleep(2)
 
-    c.send_message("Connect;localhost;12345")
+    val = socket.gethostname()
+    c.send_message("Connect;" + val + ";12345")
 
 def start(c) :
 
