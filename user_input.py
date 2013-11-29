@@ -55,6 +55,7 @@ def main():
     #time.sleep(2)
 
     #c.start("d-172-25-108-139.bootp.virginia.edu", 12344)
+    c.start("localhost", 12344)
 
     #time.sleep(2)
 
