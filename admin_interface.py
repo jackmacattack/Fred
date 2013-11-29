@@ -1,6 +1,24 @@
 __author__ = 'msstudent'
 from shelvemod import DataFile
+import server
 d = DataFile('test.txt')
+
+def on_log_out() :
+    print 'Goodbye!'
+    main()
+
+def on_get_files() :
+    main()
+
+def on_remove_file( filename ) :
+    print filename + ' was removed from the directory. '
+
+def on_total_size( size ) :
+    print 'The total size of the directory is ' + size
+
+def on_file_size( filename, size ) :
+    print filename + ' has size of ' + size
+
 
 def main() :
         y = 0
@@ -29,12 +47,12 @@ def main() :
             print '1. View a users profile information.'
             print '2. Look at a list of all the users files in their directory.'
             print '3. Remove a user and their entire directory.'
-            print '4. Remove a specific file from a users directory.'
+            print '4. Remove a specific file from a user\'s directory.'
             print '5. View the total size of a users directory.'
             print '6. Examine the size of a specific file in a users directory.'
-            print '7. Get the total size of all the files on OneDir.'
+            print '7. Reset a users password.'
             print '8. View the history of connections to the OneDir server.'
-            print '9. Reset a users password.'
+            print '0. Log out. '
             #other possible commands: restart server, move files, connect accounts/merge directories
 
             admin_command = input( "Command: " )
@@ -53,10 +71,9 @@ def main() :
                     print str(k) + " : " + str(v)
 
 
-
             if admin_command == 2 :
                 user = raw_input( 'Username of the desired profile: ')
-                #no such function exists in the flat file
+                server.get_files( user )
 
             if admin_command == 3 :
                 user = raw_input( 'Username of the user you would like to remove: ')
@@ -71,31 +88,21 @@ def main() :
                     user = raw_input( 'No such user exists, re-enter username: ')
 
                 filename = raw_input( 'File to remove: ')
-                #no such function exists in the flat file
+                server.remove_file( user, filename )
 
             if admin_command == 5 :
                 user = raw_input( 'Username of the desired profile: ')
                 while d.username_available(user) == False:
                     user = raw_input( 'No such user exists, re-enter username: ')
-
-                #no such function exists in the flat file
+                server.view_total_size(user)
 
             if admin_command == 6 :
                 user = raw_input( 'Username of the desired profile: ')
                 filename = raw_input( 'Filename: ')
-                #no such function exists in the flat file
+
+                server.view_file_size( user, filename )
 
             if admin_command == 7 :
-                #return whole OneDir size
-                print 'Size: '
-                #no such function exists in the flat file
-
-            if admin_command == 8 :
-                #rerturn all the connection times and users - whatever is possible here
-                print 'Times: '
-                #no such function exists in the flat file
-
-            if admin_command == 9 :
                 user = raw_input( 'Username that requires a new password: ')
                 while d.username_available(user) == True:
                     user = raw_input( 'No such user exists, re-enter username: ')
@@ -104,8 +111,11 @@ def main() :
 
                 d.admin_password_change(user, password)
 
+            if admin_command == 8 :
+                server.connection_times()
+
             if admin_command == 0 :
-                print 'Goodbye!'
+                server.log_out()
 
         elif y == 3:
             print 'Too many incorrect attempts, goodbye.'

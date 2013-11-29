@@ -84,7 +84,8 @@ class Server(listener.Listener):
         else:
             pass
 
-        self.s.connect(self.session[addr[0]][0], self.session[addr[0]][1])
+        self.s.connect(addr[0], addr[1] )
+        #self.s.connect(self.session[addr[0]][0], self.session[addr[0]][1])
         self.s.send(message)
         self.s.disconnect()
 
