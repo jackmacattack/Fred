@@ -1,6 +1,8 @@
 
 import socket
 from client import *
+from Tkinter import *
+
 
 def on_login_success(c) :
     print 'You have successfully logged in to your OneDir account.'
@@ -12,6 +14,10 @@ def on_login_failure(c) :
 
 def on_account_created(c) :
     print 'Account created! Please log in to the server now.'
+    start(c)
+
+def on_account_creation_failure(c) :
+    print 'Username not accepted, please try again'
     start(c)
 
 def on_found_password( c, password ) :
@@ -41,18 +47,23 @@ def on_password_change( new_password ) :
     start ()
 
 def main():
+    root = Tk()
+    root.title('OneDir')
 
-    c = Client("Jacktop", 12345)
+    c = Client("localhost", 12345, root)
 
     #time.sleep(2)
 
     #c.start("d-172-25-108-139.bootp.virginia.edu", 12344)
-    c.start("172.25.109.54", 12344)
 
     #time.sleep(2)
 
-    val = socket.gethostname()
-    c.send_message("Connect;" + val + ";12345")
+    c.send_message("Connect;localhost;12345")
+
+    root.mainloop()
+
+
+
 
 def start(c) :
 
