@@ -2,6 +2,8 @@ __author__ = 'Jack'
 
 import listener
 import os
+#import changes
+import threading
 from Tkinter import *
 
 
@@ -159,9 +161,12 @@ class Client(listener.Listener):
 
     def start_sync(self):
         pass
+        #self.t = threading.Thread(name='server', target=changes.start(self))
+        #t.isDaemon(True)
+        #self.t.start()
 
     def stop_sync(self):
-        pass
+        stop = True
 
     def logout(self):
         pass

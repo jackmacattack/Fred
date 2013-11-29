@@ -14,6 +14,7 @@ class TestEventHandler(FileSystemEventHandler):
     def on_any_event(self, event):
         type_change = event.event_type
         file_changed = event.src_path
+
         print "What type of change: " + type_change
         print "What file was modified: " + file_changed
         if type_change == 'created' :
