@@ -42,7 +42,7 @@
       <file leaf-file-name="client.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="221" column="17" selection-start="8066" selection-end="8066" vertical-scroll-proportion="5.525" vertical-offset="0" max-vertical-offset="3405">
+            <state line="428" column="17" selection-start="15297" selection-end="15297" vertical-scroll-proportion="10.7" vertical-offset="0" max-vertical-offset="6510">
               <folding>
                 <element signature="e#21#36#0" expanded="true" />
               </folding>
@@ -121,6 +121,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -141,18 +142,17 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FullScreen" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -285,9 +285,6 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
-      <method />
-    </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -309,6 +306,9 @@
       <option name="PUREUNITTEST" value="true" />
       <option name="PARAMS" value="" />
       <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -394,7 +394,11 @@
       <created>1385306781933</created>
       <updated>1385306781933</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="updated client.py with pass methods for jackkkkkkkk">
+      <created>1385324027708</created>
+      <updated>1385324027708</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -431,7 +435,8 @@
     </option>
     <MESSAGE value="Shelve module for username/password info. First commit." />
     <MESSAGE value="first attempt at integrate gui with client.py, update user_input.py to run gui" />
-    <option name="LAST_COMMIT_MESSAGE" value="first attempt at integrate gui with client.py, update user_input.py to run gui" />
+    <MESSAGE value="updated client.py with pass methods for jackkkkkkkk" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated client.py with pass methods for jackkkkkkkk" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -445,6 +450,22 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="56" selection-start="1167" selection-end="1167" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="3405">
+          <folding>
+            <element signature="e#21#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user_input.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="92" column="0" selection-start="2583" selection-end="2583" vertical-scroll-proportion="0.0" vertical-offset="1380" max-vertical-offset="1470">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/shelvemod.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="33" column="20" selection-start="959" selection-end="959" vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="930">
@@ -540,7 +561,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="221" column="17" selection-start="8066" selection-end="8066" vertical-scroll-proportion="5.525" vertical-offset="0" max-vertical-offset="3405">
+        <state line="428" column="17" selection-start="15297" selection-end="15297" vertical-scroll-proportion="10.7" vertical-offset="0" max-vertical-offset="6510">
           <folding>
             <element signature="e#21#36#0" expanded="true" />
           </folding>
