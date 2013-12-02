@@ -174,6 +174,7 @@ class Client(listener.Listener):
         elif arr[0] == "Password":
             #prints out password
             self.password_retrieve_label = Label(self.f, text='Your password is: ' + str(arr[1]))
+            self.password_retrieve_label.pack()
 
         elif arr[0] == "File":
 
@@ -446,6 +447,7 @@ class Client(listener.Listener):
         if self.change_password_entry_1.get() == self.change_password_entry_2.get():
             self.password_mismatch_label.forget()
             self.password_change_label.pack()
+            self.send_message("Message;ChangePW;" + self.change_password_entry_1.get())
         else:
             self.password_mismatch_label.pack()
 

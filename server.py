@@ -80,6 +80,8 @@ class Server(listener.Listener):
                 message = "File;Send;" + arr[2]
             elif arr[1] == "Remove":
                 self.remove(arr[2])
+            elif arr[1] == "ChangePW":
+                self.db.change_password(self.session[addr[0]][2], arr[2])
 
         elif arr[0] == "File":
 
@@ -91,7 +93,7 @@ class Server(listener.Listener):
             if not self.db.retrieve_password(arr[1], arr[2]):
                 message = "PasswordFail"
             else:
-                message = "Password;"
+                message = "Password;" + arr[1]
 
         elif arr[0] == "Debug":
 

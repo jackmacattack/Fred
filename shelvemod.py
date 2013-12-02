@@ -16,15 +16,12 @@ class DataFile:
         else:
             return True
 
-    def change_password(self, name, oldpassword, answer, newpassword):
+    def change_password(self, name, newpassword):
         d = self.data[name]
-        if d['answer'] == answer:
-            if d['password'] == oldpassword:
-                d['password'] = newpassword
-                self.data[name] = d
-                return True
+        d['password'] = newpassword
+        self.data[name] = d
 
-        return False
+        return True
 
     def verify(self, name, pword):
         if(self.data.has_key(name) == True):
