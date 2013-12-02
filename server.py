@@ -72,7 +72,7 @@ class Server(listener.Listener):
             if arr[1] == "Upload":
                 self.session[addr[0]][3] = arr[2]
                 self.session[addr[0]][4] = int(arr[3])
-                message = "File;Send;", arr[2]
+                message = "File;Send;" + arr[2]
             elif arr[1] == "Remove":
                 self.remove(arr[2])
 

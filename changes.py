@@ -17,6 +17,9 @@ class TestEventHandler(FileSystemEventHandler):
     def on_any_event(self, event):
         self.q.put_nowait(event)
 
+    def validate(self, path, name):
+        return name[0] != '.' and name[-1] != '~'
+
     def process_event(self, event):
         type_change = event.event_type
         file_changed = event.src_path
@@ -27,19 +30,19 @@ class TestEventHandler(FileSystemEventHandler):
         print "What file was modified: " + file_changed
         print "Just the name: " + file_name
 
-        if type_change == 'created' :
-            self.c.upload(file_changed)
-            print 'uploaded'
-        elif type_change == 'modified' :
-            self.c.upload(file_changed)
-            print 're-uploaded'
-        elif type_change == 'deleted' :
-            self.c.remove(file_changed)
-            #delete file from server
-            print 'deleted'
-
-
-        #if __name__ == "__main__" :
+        if self.validate(file_changed, file_name):
+            if type_change == 'created' :
+                self.c.upload(file_changed)
+                print 'uploaded'
+            elif type_change == 'modified' :
+                self.c.upload(file_changed)
+                print 're-uploaded'
+            elif type_change == 'deleted' :
+                self.c.remove(file_changed)
+                #delete file from server
+                print 'deleted'
+        else:
+            print "Invalid"
 
     def process_events(self):
         while not self.q.empty():
@@ -47,7 +50,7 @@ class TestEventHandler(FileSystemEventHandler):
             self.process_event(self.q.get_nowait())
     
     def send_changes(self):
-        while True:
+        while self.c.sync:
             print "Read Queue"
             self.process_events()
             time.sleep(1)

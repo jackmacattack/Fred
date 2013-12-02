@@ -123,7 +123,7 @@ class Client(listener.Listener):
         data = readByte.read()
         readByte.close()
 
-        self.send_message("File;", data)
+        self.send_message("File;" + data)
 
     def send_message(self, message):
         #self.s = socket.socket()         # Create a socket object
@@ -390,6 +390,8 @@ class Client(listener.Listener):
         #need to add watchdog functionality, please leave the boolean
         handler = changes.TestEventHandler(self)
 
+        self.sync = True
+
         self.t = threading.Thread(name='listener', target=handler.start)
         self.t.setDaemon(True)
         self.t.start()
@@ -397,7 +399,6 @@ class Client(listener.Listener):
         self.t2 = threading.Thread(name='send', target=handler.send_changes)
         self.t2.setDaemon(True)
         self.t2.start()
-        self.sync = True
 
 
     def stop_sync(self):
