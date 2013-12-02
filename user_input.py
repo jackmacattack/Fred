@@ -47,10 +47,11 @@ def on_password_change( new_password ) :
     start ()
 
 def main():
-    root = Tk()
-    root.title('OneDir')
 
+    root = Tk()
     c = Client("localhost", 12345, root)
+
+    root.title('OneDir')
 
     #time.sleep(2)
 
@@ -61,10 +62,8 @@ def main():
 
     c.send_message("Connect;localhost;12345")
 
+    root.wm_protocol("WM_DELETE_WINDOW", c.stop)
     root.mainloop()
-
-
-
 
 def start(c) :
 

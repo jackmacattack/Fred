@@ -55,3 +55,9 @@ class DataFile:
 
     def get_info(self, name):
         return self.data[name]
+
+    def save(self):
+        self.data.sync()
+
+    def close(self):
+        self.data.close()

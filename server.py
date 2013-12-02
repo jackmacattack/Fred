@@ -14,9 +14,11 @@ class Server(listener.Listener):
 
         self.session = {}
         self.db = shelvemod.DataFile(db_location)
+        self.on = False
 
     def start(self):
         self.s.start()
+        self.on = True
 
     def add_connection(self, host, port):
         self.s.connect(host, port)
@@ -32,11 +34,14 @@ class Server(listener.Listener):
         createFile.write(data)
         createFile.close()
 
+    def remove(self, user, file_name):
+        print "Remove"
+
     def auth(self, username, password):
         return self.db.verify(username, password)
 
     def on_message(self, addr, data):
-        #print "Client to Server:", addr, data
+        print "Client to Server:", addr, data
 
         arr = data.split(";")
         message = "Love"
@@ -68,6 +73,8 @@ class Server(listener.Listener):
                 self.session[addr[0]][3] = arr[2]
                 self.session[addr[0]][4] = int(arr[3])
                 message = "File;Send;", arr[2]
+            elif arr[1] == "Remove":
+                self.remove(arr[2])
 
         elif arr[0] == "File":
 
@@ -81,6 +88,12 @@ class Server(listener.Listener):
             else:
                 message = "Password;"
 
+        elif arr[0] == "Debug":
+
+            if arr[1] == "Kill":
+                 self.stop()
+                 return
+
         else:
             pass
 
@@ -92,3 +105,5 @@ class Server(listener.Listener):
     def stop(self):
         self.s.disconnect()
         self.s.stop()
+        self.db.close()
+        self.on = False

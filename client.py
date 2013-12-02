@@ -2,9 +2,10 @@ __author__ = 'Jack'
 
 import listener
 import os
-#import changes
+import changes
 import threading
 from Tkinter import *
+import sys
 
 
 class Client(listener.Listener):
@@ -13,7 +14,6 @@ class Client(listener.Listener):
         listener.Listener.__init__(self, host, port)
         self.host = host  # Get local machine name
         self.port = port                # Reserve a port for your service.
-        self.stop = False
 
         #GUI
         #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -101,6 +101,7 @@ class Client(listener.Listener):
 
         #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+        self.root = parent
 
     def start(self, host, port):
         self.s.start()
@@ -113,24 +114,26 @@ class Client(listener.Listener):
 
         size = os.path.getsize(file_name)   #send the file size(needed for recv())
 
-        self.s.send("Message;Upload;", file_name, ";", str(size))
+        message = "Message;Upload;" + file_name + ";" + str(size)
+
+        self.send_message(message)
 
     def send_file(self, file_name):
         readByte=open(file_name,"rb")       #read file
         data = readByte.read()
         readByte.close()
 
-        self.s.send("File;", data)
+        self.send_message("File;", data)
 
     def send_message(self, message):
         #self.s = socket.socket()         # Create a socket object
 
         #self.s.connect((self.host, self.port))     # print recieved data
-
+        sys.stdout.flush()
         self.s.send(message)
 
     def on_message(self, addr, data):
-        #print "Server to Client:",addr, data
+        print "Server to Client:",addr, data
 
         arr = data.split(";")
 
@@ -143,13 +146,13 @@ class Client(listener.Listener):
 
         elif arr[0] == "Add":
             if arr[1] == "Success":
-                #normally prints out 'account created'
-                self.account_created_label.forget()
-                self.username_unavailable_label.pack()
-            else:
                 #print out username not accepted please choose a new one
                 self.account_created_label.pack()
                 self.username_unavailable_label.forget()
+            else:
+                #normally prints out 'account created'
+                self.account_created_label.forget()
+                self.username_unavailable_label.pack()
 
         elif arr[0] == "Login":
             if arr[1] == "Success":
@@ -178,14 +181,12 @@ class Client(listener.Listener):
                 self.send_file(arr[2])
 
     def stop(self):
+        self.send_message("Debug;Kill")
         self.s.disconnect()
         self.s.stop()
-
-        #self.t = threading.Thread(name='server', target=changes.start(self))
-        #t.isDaemon(True)
-        #self.t.start()
-
-        stop = True
+        self.root.destroy()
+        self.root.quit()
+        print "Stopping Client"
 
     def change(self):
         #used when user is logged in and changing their password
@@ -387,12 +388,24 @@ class Client(listener.Listener):
 
     def start_sync(self):
         #need to add watchdog functionality, please leave the boolean
+        handler = changes.TestEventHandler(self)
+
+        self.t = threading.Thread(name='listener', target=handler.start)
+        self.t.setDaemon(True)
+        self.t.start()
+
+        self.t2 = threading.Thread(name='send', target=handler.send_changes)
+        self.t2.setDaemon(True)
+        self.t2.start()
         self.sync = True
 
 
     def stop_sync(self):
         #need to add watchdog functionality, please leave the boolean
         self.sync = False
+
+    def remove(self, file_name):
+        self.send_message("Message;Remove" + file_name)
 
     def logout(self):
         #as of right now this just turns calls stop_sync and refreshed all the entries and goes to the home menu,
