@@ -48,12 +48,11 @@ def on_password_change( new_password ) :
 
 def main():
 
+    root = Tk()
+
     c = Client("localhost", 12345, root)
 
     root.geometry("260x350")
-
-    root = Tk()
-
     root.title('OneDir')
 
     #time.sleep(2)
@@ -107,12 +106,6 @@ def start(c) :
             security_answer = raw_input( 'Please enter your security answer: ' )
 
             c.forgotten_password( find_username, security_answer )
-
-        elif command == 0 :
-            c.stop()
-
-        else:
-            loop = True
 
         elif command == 0 :
             c.stop()
