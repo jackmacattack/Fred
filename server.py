@@ -42,37 +42,6 @@ class Server(listener.Listener):
     def remove(self, user, file_name):
         print "Remove"
 
-    def totalSize(self):
-        size = 0
-        for dirpath, dirnames, filenames in os.walk("~/OneDir_server/"):
-            for f in filenames:
-                fp = os.path.join(dirpath,f)
-                size += os.path.getsize(fp)
-        return size
-
-    def totalCount(self):
-        count = 0
-        for dirpath, dirnames, filenames in os.walk("~/OneDir_server/"):
-            for f in filenames:
-                count += 1
-        return count
-
-    def userSize(self,user):
-        size = 0
-        for dirpath, dirnames, filenames in os.walk("~/OneDir_server/%s" % user):
-            for f in filenames:
-                fp = os.path.join(dirpath,f)
-                size += os.path.getsize(fp)
-        return size
-    
-    def userCount(self,user):
-        count = 0
-        for dirpath, dirnames, filenames in os.walk("~/OneDir_server/%s" % user):
-            for f in filenames:
-                count += 1
-        count size
-        
-
     def auth(self, username, password):
         return self.db.verify(username, password)
 
