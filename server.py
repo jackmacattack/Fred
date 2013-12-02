@@ -24,11 +24,16 @@ class Server(listener.Listener):
         self.s.connect(host, port)
 
     def saveFile(self, user, path, data):
-        folderPath= "\\".join(path.split("\\")[:-1])                #get just folder to check if the folder exists
-        folder = os.path.expanduser(".\%s\%s" %(user,folderPath))
+        folderPath= "/".join(path.split("/")[:-1])                #get just folder to check if the folder exists
+        folder = os.path.expanduser("~/OneDir_server/%s%s" %(user,folderPath))
+
+        print folder
+
         if not os.path.exists(folder):                              #check if folder exists
             os.makedirs(folder)
-        fullpath = os.path.expanduser(".\%s\%s" %(user,path))
+        #fullpath = os.path.expanduser("./%s/%s" %(user,path))
+        fullpath = folder + "/" + path.split("/")[-1]
+        print fullpath
 
         createFile = open(fullpath,"wb")
         createFile.write(data)
@@ -78,7 +83,7 @@ class Server(listener.Listener):
 
         elif arr[0] == "File":
 
-            self.saveFile(self.session[addr[0]][2], self.session[addr[0]][3], data)
+            self.saveFile(self.session[addr[0]][2], self.session[addr[0]][3], arr[1])
             message = "File;Success"
 
         elif arr[0] == "RecoverPW":
