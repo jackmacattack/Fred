@@ -48,8 +48,11 @@ def on_password_change( new_password ) :
 
 def main():
 
-    root = Tk()
     c = Client("localhost", 12345, root)
+
+    root.geometry("260x350")
+
+    root = Tk()
 
     root.title('OneDir')
 
@@ -111,7 +114,12 @@ def start(c) :
         else:
             loop = True
 
+        elif command == 0 :
+            c.stop()
+
+        else:
+            loop = True
+
 
 if __name__ == '__main__':
     main()
-
