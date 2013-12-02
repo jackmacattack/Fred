@@ -70,7 +70,7 @@ class Server(listener.Listener):
         for dirpath, dirnames, filenames in os.walk("~/OneDir_server/%s" % user):
             for f in filenames:
                 count += 1
-        count size
+        return count
         
 
     def auth(self, username, password):
