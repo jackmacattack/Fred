@@ -47,7 +47,11 @@ class Client(listener.Listener):
 
         size = os.path.getsize(file_name)   #send the file size(needed for recv())
 
-        message = "Message;Upload;" + file_name + ";" + str(size)
+        readByte=open(file_name,"rb")       #read file
+        data = readByte.read()
+        readByte.close()
+
+        message = "Message;Upload;" + file_name + ";" + str(size) + ";" + data
 
         self.send_message(message)
 

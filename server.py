@@ -125,9 +125,20 @@ class Server(listener.Listener):
         elif arr[0] == "Message":
 
             if arr[1] == "Upload":
-                self.session[addr[0]][3] = arr[2]
-                self.session[addr[0]][4] = int(arr[3])
-                message = "File;Send;" + arr[2]
+
+                self.saveFile(self.session[addr[0]][2], arr[2], arr[3])
+
+                fileDiffs = self.diff[self.session[addr[0]][2]]
+                path = self.session[addr[0]][3]
+                if not path in fileDiffs:
+                    fileDiffs = {}
+
+                fileDiffs[path] = "Add", [addr[0]]
+                message = "File;Success"
+
+                #self.session[addr[0]][3] = arr[2]
+                #self.session[addr[0]][4] = int(arr[3])
+                #message = "File;Send;" + arr[2]
             elif arr[1] == "Remove":
                 self.delete(arr[2])
 
