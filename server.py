@@ -53,6 +53,7 @@ class Server(listener.Listener):
         #self.s.connect(addr[0], addr[1] )
         self.s.connect(self.session[client][0], self.session[client][1])
         self.s.send(message)
+        print self.session[client][0], self.session[client][1], message
         self.s.disconnect()
 
     def update_client(self, client, file_name):

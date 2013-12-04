@@ -62,7 +62,7 @@ def main(client, server):
 
     #time.sleep(2)
 
-    c.send_message("Connect;localhost;12345")
+    c.send_message("Connect;" + client[0] + ";" + client[1])
 
     root.wm_protocol("WM_DELETE_WINDOW", c.stop)
     root.mainloop()
