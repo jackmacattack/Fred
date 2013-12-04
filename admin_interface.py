@@ -16,7 +16,8 @@ def on_remove_file( filename ) :
     print filename + ' was removed from the directory. '
 
 def list_user_files(user):
-    for dirpath, dirnames, filenames in os.walk("~/OneDir_server/%s" %user):
+    s = os.path.expanduser( "~/OneDir_server/%s" %user ) 
+    for dirpath, dirnames, filenames in os.walk(s):
         for f in filenames:
             fp = os.path.join(dirpath,f)
             print fp
@@ -24,7 +25,8 @@ def list_user_files(user):
 def total_size( ) :
     size = 0
     count = 0
-    for dirpath, dirnames, filenames in os.walk("~/OneDir_server/"):
+    s = os.path.expanduser( "~/OneDir_server/")
+    for dirpath, dirnames, filenames in os.walk(s):
         for f in filenames:
             fp = os.path.join(dirpath,f)
             size += os.path.getsize(fp)
@@ -34,7 +36,8 @@ def total_size( ) :
 def user_size( user ) :
     size = 0
     count = 0
-    for dirpath, dirnames, filenames in os.walk("~/OneDir_server/%s" % user):
+    s = os.path.expanduser( "~/OneDir_server/%s" %user )
+    for dirpath, dirnames, filenames in os.walk(s):
         for f in filenames:
             fp = os.path.join(dirpath,f)
             size += os.path.getsize(fp)
@@ -67,12 +70,11 @@ def main() :
                 print '1. View a users profile information.'
                 print '2. Look at a list of all the users files in their directory.'
                 print '3. Remove a user.'
-                print '4. Remove a specific file from a user\'s directory.'
-                print '5. View the total size of a users directory.'
-                print '6. View the total size of OneDir'
-                print '7. Reset a users password.'
-                print '8. View the history of connections to the OneDir server.'
-                print '0. Log out. '
+                print '4. View the total size of a users directory.'
+                print '5. View the total size of OneDir'
+                print '6. Reset a users password.'
+                print '7. View the history of connections to the OneDir server.'
+                print '0. Quit. '
                 #other possible commands: restart server, move files, connect accounts/merge directories
 
                 admin_command = input( "Command: " )
@@ -93,46 +95,41 @@ def main() :
 
                 if admin_command == 2 :
                     user = raw_input( 'Username of the desired profile: ')
-                    list_user_files(user)
+                    
+	            list_user_files(user)
+                    print 'here'
 
                 if admin_command == 3 :
                     user = raw_input( 'Username of the user you would like to remove: ')
-                    while d.username_available(user) == False:
+                    while d.username_available(user) == True:
                         user = raw_input( 'No such user exists, re-enter username: ')
                     d.remove_user(user)
 		    d.save()
                     print 'User was removed succesfully.'
                     files= raw_input('remove user files? (y/n)')
                     if files=="y":
-                        shutil.rmtree("~/OneDir_server/%s" % user)
+			s = os.path.expanduser( "~/OneDir_server/%s" %user) 
+                        shutil.rmtree(s)
 
                 if admin_command == 4 :
                     user = raw_input( 'Username of the desired profile: ')
-                    while d.username_available(user) == False:
-                        user = raw_input( 'No such user exists, re-enter username: ')
-
-                    filename = raw_input( 'File to remove: ')
-                    server.remove( user, filename )
-
-                if admin_command == 5 :
-                    user = raw_input( 'Username of the desired profile: ')
-                    while d.username_available(user) == False:
+                    while d.username_available(user) == True:
                         user = raw_input( 'No such user exists, re-enter username: ')
                     user_size(user)
 
-                if admin_command == 6 :
+                if admin_command == 5 :
                     total_size()
 
-                if admin_command == 7 :
+                if admin_command == 6 :
                     user = raw_input( 'Username that requires a new password: ')
                     while d.username_available(user) == True:
                         user = raw_input( 'No such user exists, re-enter username: ')
 
                     password = raw_input( 'Enter the new password for this user: ')
 
-                    d.admin_password_change(user, password)
+                    d.admin_pword_change(user, password)
 
-                if admin_command == 8 :
+                if admin_command == 7 :
                     read_log()
 
                 if admin_command == 0 :
