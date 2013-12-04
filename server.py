@@ -1,6 +1,7 @@
 __author__ = 'Jack'
 
 import listener
+import log
 import os
 import shelvemod
 import threading
@@ -17,6 +18,7 @@ class Server(listener.Listener):
         self.session = {}
         self.diff = {}
         self.db = shelvemod.DataFile(db_location)
+        self.log = log.Log()
         self.on = False
 
     def start(self):
@@ -80,6 +82,7 @@ class Server(listener.Listener):
 
     def on_message(self, addr, data):
         print "Client to Server:", addr, data
+        self.log.write(str(addr) + " " + data)
 
         arr = data.split(";")
         message = "Love"
@@ -167,6 +170,7 @@ class Server(listener.Listener):
         self.s.disconnect()
         self.s.stop()
         self.db.close()
+        self.log.close()
         self.on = False
 
     def update(self):
@@ -194,5 +198,6 @@ class Server(listener.Listener):
     def save_sometimes(self):
         while self.on:
             self.db.save()
+            self.log.save()
             time.sleep(5)
 
