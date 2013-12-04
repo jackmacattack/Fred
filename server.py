@@ -101,7 +101,7 @@ class Server(listener.Listener):
                 self.session[addr[0]][2] = arr[1]
                 if arr[1] in self.diff:
                     self.diff[arr[1]] = {}
-                message = "Login;Success"
+                message = "Login;Success;" + arr[1]
             else:
                 message = "Login;Failure"
 
