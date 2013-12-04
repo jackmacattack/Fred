@@ -36,6 +36,11 @@ class Client(listener.Listener):
         print fullpath
         '''
 
+        folderPath= "/".join(path.split("/")[:-1])                #get just folder to check if the folder exists
+
+        if not os.path.exists(folderPath):                              #check if folder exists
+            os.makedirs(folderPath)
+
         createFile = open(path,"wb")
         createFile.write(data)
         createFile.close()
