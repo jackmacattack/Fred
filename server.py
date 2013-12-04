@@ -36,7 +36,23 @@ class Server(listener.Listener):
     def add_connection(self, host, port):
         self.s.connect(host, port)
 
+    def convert_to_server_name(self, user, name):
+        return os.path.expanduser("~/OneDir_server/%s%s" %(user, name))
+
+    def convert_to_client_name(self, name):
+        arr = name.split("/")
+        client = arr[arr.index("OneDir"):]
+
+        res = ""
+        for i in client:
+            res += "/" + i
+        
+        return res[1:]
+
     def saveFile(self, user, path, data):
+
+        path = self.convert_to_client_name(path)
+
         folderPath= "/".join(path.split("/")[:-1])                #get just folder to check if the folder exists
         folder = os.path.expanduser("~/OneDir_server/%s%s" %(user,folderPath))
 
@@ -56,11 +72,13 @@ class Server(listener.Listener):
         print self.session[client][0], self.session[client][1], message
         self.s.disconnect()
 
-    def update_client(self, client, file_name):
+    def update_client(self, client, user, file_name):
 
-        size = os.path.getsize(file_name)   #send the file size(needed for recv())
+        #size = os.path.getsize(file_name)   #send the file size(needed for recv())
 
-        readByte=open(file_name,"rb")       #read file
+        name = self.convert_to_server_name(user, file_name)
+        
+        readByte=open(name,"rb")       #read file
         data = readByte.read()
         readByte.close()
 
@@ -128,12 +146,11 @@ class Server(listener.Listener):
 
                 self.saveFile(self.session[addr[0]][2], arr[2], arr[3])
 
-                fileDiffs = self.diff[self.session[addr[0]][2]]
-                path = self.session[addr[0]][3]
-                if not path in fileDiffs:
-                    fileDiffs = {}
+                path = arr[2]
+                if not path in self.diff[self.session[addr[0]][2]]:
+                    self.diff[self.session[addr[0]][2]] = {}
 
-                fileDiffs[path] = "Add", [addr[0]]
+                self.diff[self.session[addr[0]][2]][path] = "Add", [addr[0]]
                 message = "File;Success"
 
                 #self.session[addr[0]][3] = arr[2]
@@ -189,28 +206,32 @@ class Server(listener.Listener):
     def update(self):
         while self.on:
             self.apply_changes()
+            time.sleep(5)
 
     def apply_changes(self):
+        print "Diff: ", self.diff
         for key1 in self.diff:
             diff = self.diff[key1]
             for key2 in diff:
                 f = diff[key2]
                 for conn in self.session:
-                    user = self.session[conn]
-                    if not user in f[1]:
-                        try:
+                    user = self.session[conn][2]
+                    if not conn in f[1]:
+                        if True:
+                        #try:
                             if f[0] == "Add":
-                                self.update_client(user, key2)
+                                self.update_client(conn, user, key2)
                             elif f[0] == "Remove":
-                                self.remove(user, key2)
+                                self.remove(conn, key2)
 
-                            f[1].append(user)
-                        except Exception:
-                            break
+                            self.diff[key1][key2][1].append(conn)
+                        #except Exception:
+                        #    print "God damn it"
+                        #    break
 
     def save_sometimes(self):
         while self.on:
             self.db.save()
             self.log.save()
-            time.sleep(5)
+            time.sleep(60)
 

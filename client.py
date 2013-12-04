@@ -36,7 +36,7 @@ class Client(listener.Listener):
         print fullpath
         '''
 
-        createFile = open(fullpath,"wb")
+        createFile = open(path,"wb")
         createFile.write(data)
         createFile.close()
 
