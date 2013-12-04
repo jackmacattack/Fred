@@ -12,7 +12,7 @@ class Stopper:
         self.stopping = True
 
 def run(stopper):
-    s = server.Server("localhost", 12344, "test.txt")
+    s = server.Server("localhost", 12344, os.path.expanduser("~/OneDir_server/db") )
     s.start()
 
     love = True
