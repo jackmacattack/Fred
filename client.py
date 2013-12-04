@@ -41,7 +41,7 @@ class Client(listener.Listener):
         createFile.close()
 
     def remove(self, file_name):
-        print "Remove"
+        os.remove(file_name)
 
     def upload(self, file_name):
 

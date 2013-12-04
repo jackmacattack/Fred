@@ -46,11 +46,11 @@ def on_password_change( new_password ) :
     print 'You have changed your new password to ' + new_password
     start ()
 
-def main():
+def main(client, server):
 
     root = Tk()
 
-    c = Client("localhost", 12345, root)
+    c = Client(client[0], client[1], root)
 
     root.geometry("260x350")
     root.title('OneDir')
@@ -58,7 +58,7 @@ def main():
     #time.sleep(2)
 
     #c.start("d-172-25-108-139.bootp.virginia.edu", 12344)
-    c.start("localhost", 12344)
+    c.start(server[0], server[1])
 
     #time.sleep(2)
 
@@ -115,4 +115,4 @@ def start(c) :
 
 
 if __name__ == '__main__':
-    main()
+    main(("localhost", 12345), ("localhost", 12344))

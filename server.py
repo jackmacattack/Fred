@@ -33,13 +33,10 @@ class Server(listener.Listener):
         folderPath= "/".join(path.split("/")[:-1])                #get just folder to check if the folder exists
         folder = os.path.expanduser("~/OneDir_server/%s%s" %(user,folderPath))
 
-        print folder
-
         if not os.path.exists(folder):                              #check if folder exists
             os.makedirs(folder)
         #fullpath = os.path.expanduser("./%s/%s" %(user,path))
         fullpath = folder + "/" + path.split("/")[-1]
-        print fullpath
 
         createFile = open(fullpath,"wb")
         createFile.write(data)
@@ -67,7 +64,11 @@ class Server(listener.Listener):
         self.server_send_message("Update;Remove;" + file_name)
 
     def delete(self, user, file_name):
-        print "Remove"
+        folderPath= "/".join(path.split("/")[:-1])                #get just folder to check if the folder exists
+        folder = os.path.expanduser("~/OneDir_server/%s%s" %(user,folderPath))
+
+        fullpath = folder + "/" + path.split("/")[-1]
+        os.remove(fullpath)
 
     def auth(self, username, password):
         return self.db.verify(username, password)
@@ -94,8 +95,6 @@ class Server(listener.Listener):
 
                 folder = os.path.expanduser("~/OneDir_server/%s" %(arr[1]))
 
-                print folder
-
                 if not os.path.exists(folder):                              #check if folder exists
                     os.makedirs(folder)
 
@@ -107,7 +106,7 @@ class Server(listener.Listener):
 
             if self.auth(arr[1], arr[2]):
                 self.session[addr[0]][2] = arr[1]
-                if arr[1] in self.diff:
+                if not arr[1] in self.diff:
                     self.diff[arr[1]] = {}
                 message = "Login;Success;" + arr[1]
             else:
@@ -121,14 +120,24 @@ class Server(listener.Listener):
                 message = "File;Send;" + arr[2]
             elif arr[1] == "Remove":
                 self.delete(arr[2])
-                self.diff[self.session[addr[0]][2]][self.session[addr[0]][3]].append("Remove", [addr[0]])
+
+                fileDiffs = self.diff[self.session[addr[0]][2]]
+                path = self.session[addr[0]][3]
+
+                fileDiffs[path] = "Remove", [addr[0]]
             elif arr[1] == "ChangePW":
                 self.db.change_password(self.session[addr[0]][2], arr[2])
 
         elif arr[0] == "File":
 
             self.saveFile(self.session[addr[0]][2], self.session[addr[0]][3], arr[1])
-            self.diff[self.session[addr[0]][2]][self.session[addr[0]][3]].append(self.session[addr[0]][3], "Add", [addr[0]])
+
+            fileDiffs = self.diff[self.session[addr[0]][2]]
+            path = self.session[addr[0]][3]
+            if not path in fileDiffs:
+                fileDiffs = {}
+
+            fileDiffs[path] = "Add", [addr[0]]
             message = "File;Success"
 
         elif arr[0] == "RecoverPW":
@@ -162,17 +171,19 @@ class Server(listener.Listener):
     def apply_changes(self):
         for key1 in self.diff:
             diff = self.diff[key1]
-            for conn in self.session:
-                user = self.session[conn]
-                if not user in diff[2]:
-                    try:
-                        if diff[1] == "Add":
-                            self.update_client(user, diff[0])
-                        elif diff[1] == "Remove":
-                            self.remove(user, diff[0])
+            for key2 in diff:
+                f = diff[key2]
+                for conn in self.session:
+                    user = self.session[conn]
+                    if not user in f[1]:
+                        try:
+                            if f[0] == "Add":
+                                self.update_client(user, key2)
+                            elif f[0] == "Remove":
+                                self.remove(user, key2)
 
-                        diff[2].append()
-                    except Exception:
-                        break
+                            f[1].append(user)
+                        except Exception:
+                            break
 
 
