@@ -89,7 +89,8 @@ class Server(listener.Listener):
 
         if arr[0] == "Connect":
             # host, port, user, filepath, filesize
-            self.session[addr[0]] = [arr[1], int(arr[2]), "", "", 0]
+            #self.session[addr[0]] = [arr[1], int(arr[2]), "", "", 0]
+            self.session[addr[0]] = [addr[0], int(arr[2]), "", "", 0]
             message = "Received"
 
         elif arr[0] == "Disconnect":
