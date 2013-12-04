@@ -60,10 +60,11 @@ def main() :
             admin_code = raw_input('Incorrect, please reenter: ')
 
         if admin_code == 'cs3240':
-
+'''
             pcorrect = False
             
             print 'This is the admin interface of OneDir. Please sign in using your admin username and password.'
+
             username = raw_input( 'Username: ')
             password = raw_input( 'Password: ')
 
@@ -80,8 +81,9 @@ def main() :
                 if(d.username_available(username) == False):
                     if(d.get_info(username)['password'] == password):
                         pcorrect = True
-                        print 'You have successfully signed into your OneDir ADMIN account'
-            while(true):
+'''
+            print 'You have successfully signed into your OneDir ADMIN account'
+            while(True):
                 #if the username and password link to an admin account, print the rest
                 print 'Please enter the number of the command you would like to execute.'
                 print '1. View a users profile information.'
@@ -156,6 +158,7 @@ def main() :
 
                 if admin_command == 0 :
                     log_out()
+
 
         elif y == 3:
             print 'Too many incorrect attempts, goodbye.'
