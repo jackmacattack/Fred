@@ -2,6 +2,7 @@ __author__ = 'Jack'
 
 import server
 import socket
+import os
 
 class Stopper:
     
