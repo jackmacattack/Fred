@@ -37,7 +37,7 @@ class Server(listener.Listener):
         self.s.connect(host, port)
 
     def convert_to_server_name(self, user, name):
-        return os.path.expanduser("~/OneDir_server/%s%s" %(user, name))
+        return os.path.expanduser("~/OneDir_server/%s%s" %(user, self.convert_to_client_name(name)))
 
     def convert_to_client_name(self, name):
         arr = name.split("/")
@@ -47,7 +47,8 @@ class Server(listener.Listener):
         for i in client:
             res += "/" + i
         
-        return res[1:]
+        print res
+        return res
 
     def saveFile(self, user, path, data):
 
@@ -82,7 +83,7 @@ class Server(listener.Listener):
         data = readByte.read()
         readByte.close()
 
-        message = "Update;Add;" + file_name + ";" + data
+        message = "Update;Add;" + "~" + self.convert_to_client_name(file_name) + ";" + data
 
         self.server_send_message(client, message)
 
@@ -144,7 +145,7 @@ class Server(listener.Listener):
 
             if arr[1] == "Upload":
 
-                self.saveFile(self.session[addr[0]][2], arr[2], arr[3])
+                self.saveFile(self.session[addr[0]][2], arr[2], arr[4])
 
                 path = arr[2]
                 if not path in self.diff[self.session[addr[0]][2]]:
