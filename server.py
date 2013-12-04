@@ -4,6 +4,7 @@ import listener
 import os
 import shelvemod
 import threading
+import time
 
 
 class Server(listener.Listener):
@@ -25,6 +26,10 @@ class Server(listener.Listener):
         self.t = threading.Thread(name='update', target=self.update)
         self.t.setDaemon(True)
         self.t.start()
+        
+        self.t2 = threading.Thread(name='save', target=self.save_sometimes)
+        self.t2.setDaemon(True)
+        self.t2.start()
 
     def add_connection(self, host, port):
         self.s.connect(host, port)
@@ -186,4 +191,8 @@ class Server(listener.Listener):
                         except Exception:
                             break
 
+    def save_sometimes(self):
+        while self.on:
+            self.db.save()
+            time.sleep(5)
 
