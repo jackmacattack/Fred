@@ -91,10 +91,10 @@ class Server(listener.Listener):
         self.server_send_message("Update;Remove;" + file_name)
 
     def delete(self, user, file_name):
-        folderPath= "/".join(path.split("/")[:-1])                #get just folder to check if the folder exists
-        folder = os.path.expanduser("~/OneDir_server/%s%s" %(user,folderPath))
+        #folderPath= "/".join(path.split("/")[:-1])                #get just folder to check if the folder exists
+        #folder = os.path.expanduser("~/OneDir_server/%s%s" %(user,folderPath))
 
-        fullpath = folder + "/" + path.split("/")[-1]
+        fullpath = self.convert_to_server_name(user, file_name) #folder + "/" + path.split("/")[-1]
         os.remove(fullpath)
 
     def auth(self, username, password):
@@ -148,10 +148,11 @@ class Server(listener.Listener):
                 self.saveFile(self.session[addr[0]][2], arr[2], arr[4])
 
                 path = arr[2]
-                if not path in self.diff[self.session[addr[0]][2]]:
-                    self.diff[self.session[addr[0]][2]] = {}
+                #if not path in self.diff[self.session[addr[0]][2]]:
+                #    self.diff[self.session[addr[0]][2]] = {}
 
                 self.diff[self.session[addr[0]][2]][path] = "Add", [addr[0]]
+
                 message = "File;Success"
 
                 #self.session[addr[0]][3] = arr[2]
