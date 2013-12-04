@@ -3,6 +3,7 @@ __author__ = 'Jack'
 import listener
 import os
 import shelvemod
+import threading
 
 
 class Server(listener.Listener):
@@ -10,15 +11,20 @@ class Server(listener.Listener):
     def __init__(self, host, port, db_location):
         listener.Listener.__init__(self, host, port)
         self.host = host  # Get local machine name
-        self.port = port                # Reserve a port for your service.
+        self.port = port  # Reserve a port for your service.
 
         self.session = {}
+        self.diff = {}
         self.db = shelvemod.DataFile(db_location)
         self.on = False
 
     def start(self):
         self.s.start()
         self.on = True
+        
+        self.t = threading.Thread(name='update', target=self.update)
+        self.t.setDaemon(True)
+        self.t.start()
 
     def add_connection(self, host, port):
         self.s.connect(host, port)
@@ -39,7 +45,28 @@ class Server(listener.Listener):
         createFile.write(data)
         createFile.close()
 
-    def remove(self, user, file_name):
+    def server_send_message(self, client, message):
+        #self.s.connect(addr[0], addr[1] )
+        self.s.connect(self.session[client][0], self.session[client][1])
+        self.s.send(message)
+        self.s.disconnect()
+
+    def update_client(self, client, file_name):
+
+        size = os.path.getsize(file_name)   #send the file size(needed for recv())
+
+        readByte=open(file_name,"rb")       #read file
+        data = readByte.read()
+        readByte.close()
+
+        message = "Update;Add;" + file_name + ";" + data
+
+        self.server_send_message(client, message)
+
+    def remove(self, client, file_name):
+        self.server_send_message("Update;Remove;" + file_name)
+
+    def delete(self, user, file_name):
         print "Remove"
 
     def auth(self, username, password):
@@ -52,9 +79,13 @@ class Server(listener.Listener):
         message = "Love"
 
         if arr[0] == "Connect":
-
+            # host, port, user, filepath, filesize
             self.session[addr[0]] = [arr[1], int(arr[2]), "", "", 0]
             message = "Received"
+
+        elif arr[0] == "Disconnect":
+            del self.session[addr[0]]
+            return
 
         elif arr[0] == "Add":
 
@@ -68,6 +99,8 @@ class Server(listener.Listener):
 
             if self.auth(arr[1], arr[2]):
                 self.session[addr[0]][2] = arr[1]
+                if arr[1] in self.diff:
+                    self.diff[arr[1]] = {}
                 message = "Login;Success"
             else:
                 message = "Login;Failure"
@@ -79,13 +112,15 @@ class Server(listener.Listener):
                 self.session[addr[0]][4] = int(arr[3])
                 message = "File;Send;" + arr[2]
             elif arr[1] == "Remove":
-                self.remove(arr[2])
+                self.delete(arr[2])
+                self.diff[self.session[addr[0]][2]][self.session[addr[0]][3]].append("Remove", [addr[0]])
             elif arr[1] == "ChangePW":
                 self.db.change_password(self.session[addr[0]][2], arr[2])
 
         elif arr[0] == "File":
 
             self.saveFile(self.session[addr[0]][2], self.session[addr[0]][3], arr[1])
+            self.diff[self.session[addr[0]][2]][self.session[addr[0]][3]].append(self.session[addr[0]][3], "Add", [addr[0]])
             message = "File;Success"
 
         elif arr[0] == "RecoverPW":
@@ -104,13 +139,32 @@ class Server(listener.Listener):
         else:
             pass
 
-        #self.s.connect(addr[0], addr[1] )
-        self.s.connect(self.session[addr[0]][0], self.session[addr[0]][1])
-        self.s.send(message)
-        self.s.disconnect()
+        self.server_send_message(addr[0], message)
 
     def stop(self):
         self.s.disconnect()
         self.s.stop()
         self.db.close()
         self.on = False
+
+    def update(self):
+        while self.on:
+            self.apply_changes()
+
+    def apply_changes(self):
+        for key1 in self.diff:
+            diff = self.diff[key1]
+            for conn in self.session:
+                user = self.session[conn]
+                if not user in diff[2]:
+                    try:
+                        if diff[1] == "Add":
+                            self.update_client(user, diff[0])
+                        elif diff[1] == "Remove":
+                            self.remove(user, diff[0])
+
+                        diff[2].append()
+                    except Exception:
+                        break
+
+

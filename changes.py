@@ -10,8 +10,9 @@ import Queue
 
 class TestEventHandler(FileSystemEventHandler):
 
-    def __init__(self, c):
+    def __init__(self, c, dir):
         self.c = c
+        self.dir = dir
         self.q = Queue.Queue()
 
     def on_any_event(self, event):
@@ -60,11 +61,10 @@ class TestEventHandler(FileSystemEventHandler):
                     format='%(asctime)s - %(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S')
         #path = sys.argv[1] if len(sys.argv) > 1 else '.'
-        dir = os.path.expanduser("~/OneDir/")
 
-        if not os.path.isdir(dir):
-            os.makedirs(dir)
-        path = dir
+        path = self.dir
+        if not os.path.isdir(path):
+            os.makedirs(path)
 
         observer = Observer()
 

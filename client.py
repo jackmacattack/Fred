@@ -107,10 +107,28 @@ class Client(listener.Listener):
         self.s.start()
         self.s.connect(host, port)
 
-    def upload(self, file_name):
-        #s = socket.socket()         # Create a socket object
+    def saveFile(self, path, data):
+        '''
+        folderPath= "/".join(path.split("/")[:-1])                #get just folder to check if the folder exists
+        folder = os.path.expanduser("~/OneDir_server/%s%s" %(user,folderPath))
 
-        #s.connect((self.host, self.port))     # print recieved data
+        print folder
+
+        if not os.path.exists(folder):                              #check if folder exists
+            os.makedirs(folder)
+        #fullpath = os.path.expanduser("./%s/%s" %(user,path))
+        fullpath = folder + "/" + path.split("/")[-1]
+        print fullpath
+        '''
+
+        createFile = open(fullpath,"wb")
+        createFile.write(data)
+        createFile.close()
+
+    def remove(self, file_name):
+        print "Remove"
+
+    def upload(self, file_name):
 
         size = os.path.getsize(file_name)   #send the file size(needed for recv())
 
@@ -181,7 +199,15 @@ class Client(listener.Listener):
             if arr[1] == "Send":
                 self.send_file(arr[2])
 
+        elif arr[0] == "Update":
+
+            if arr[1] == "Add":
+                self.saveFile(arr[2], arr[3])
+            elif arr[1] == "Remove":
+                self.remove(arr[2])
+
     def stop(self):
+        self.send_message("Disconnect")
         self.send_message("Debug;Kill")
         self.s.disconnect()
         self.s.stop()
@@ -389,7 +415,8 @@ class Client(listener.Listener):
 
     def start_sync(self):
         #need to add watchdog functionality, please leave the boolean
-        handler = changes.TestEventHandler(self)
+        dir = os.path.expanduser("~/OneDir/")
+        handler = changes.TestEventHandler(self, dir)
 
         self.sync = True
 
