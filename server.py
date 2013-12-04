@@ -91,6 +91,14 @@ class Server(listener.Listener):
 
             if self.db.username_available(arr[1]):
                 self.db.add_user(arr[1], arr[2], arr[3], arr[4], 0)
+
+                folder = os.path.expanduser("~/OneDir_server/%s" %(arr[1]))
+
+                print folder
+
+                if not os.path.exists(folder):                              #check if folder exists
+                    os.makedirs(folder)
+
                 message = "Add;Success"
             else:
                 message = "Add;NameTaken"
