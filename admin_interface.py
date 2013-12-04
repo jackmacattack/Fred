@@ -3,7 +3,7 @@ from shelvemod import DataFile
 import server
 import os
 import shutil
-d = DataFile('test.txt')
+d = DataFile(os.path.expanduser("~/OneDir_server/db"))
 
 def log_out() :
     print 'Goodbye!'
@@ -60,28 +60,6 @@ def main() :
             admin_code = raw_input('Incorrect, please reenter: ')
 
         if admin_code == 'cs3240':
-'''
-            pcorrect = False
-            
-            print 'This is the admin interface of OneDir. Please sign in using your admin username and password.'
-
-            username = raw_input( 'Username: ')
-            password = raw_input( 'Password: ')
-
-            if(d.username_available(username) == False):
-                if(d.get_info(username)['password'] == password):
-                    pcorrect = True
-                    print 'You have successfully signed into your OneDir ADMIN account'
-
-            
-            while( d.username_available(username) == True or not pcorrect):
-                print ('Wrong username or password, please reenter information')
-                username = raw_input( 'Username: ')
-                password = raw_input( 'Password: ')
-                if(d.username_available(username) == False):
-                    if(d.get_info(username)['password'] == password):
-                        pcorrect = True
-'''
             print 'You have successfully signed into your OneDir ADMIN account'
             while(True):
                 #if the username and password link to an admin account, print the rest
@@ -122,6 +100,7 @@ def main() :
                     while d.username_available(user) == False:
                         user = raw_input( 'No such user exists, re-enter username: ')
                     d.remove_user(user)
+		    d.save()
                     print 'User was removed succesfully.'
                     files= raw_input('remove user files? (y/n)')
                     if files=="y":
