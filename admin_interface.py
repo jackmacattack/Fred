@@ -46,7 +46,8 @@ def user_size( user ) :
 
 def read_log():# change log name
     count = 0
-    for line in reversed(open("log.log").readlines()):
+    s = os.path.expanduser("~/OneDir_server/log.log" )
+    for line in reversed(open(s).readlines()):
         if count!=0 and count%10 == 0:
             i = raw_input("continue? (y/n)")
             if i == "n":
