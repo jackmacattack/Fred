@@ -2,9 +2,10 @@ __author__ = 'msstudent'
 from shelvemod import DataFile
 import server
 import os
+import shutil
 d = DataFile('test.txt')
 
-def on_log_out() :
+def log_out() :
     print 'Goodbye!'
     main()
 '''
@@ -40,6 +41,16 @@ def user_size( user ) :
             count +=1
     print 'The total size of %s\'s directory is %d bytes with %d files' %(user,size,count)
 
+def read_log():# change log name
+    count = 0
+    for line in reversed(open("log.log").readlines()):
+        if count!=0 and count%10 == 0:
+            i = raw_input("continue? (y/n)")
+            if i == "n":
+                break
+        print line.rstrip()
+        count +=1
+
 def main() :
         y = 0
         admin_code = raw_input('Please enter admin code: ')
@@ -50,7 +61,7 @@ def main() :
 
         if admin_code == 'cs3240':
 
-            pcorrect = false
+            pcorrect = False
             
             print 'This is the admin interface of OneDir. Please sign in using your admin username and password.'
             username = raw_input( 'Username: ')
@@ -75,7 +86,7 @@ def main() :
                 print 'Please enter the number of the command you would like to execute.'
                 print '1. View a users profile information.'
                 print '2. Look at a list of all the users files in their directory.'
-                print '3. Remove a user and their entire directory.'
+                print '3. Remove a user.'
                 print '4. Remove a specific file from a user\'s directory.'
                 print '5. View the total size of a users directory.'
                 print '6. View the total size of OneDir'
@@ -110,6 +121,9 @@ def main() :
                         user = raw_input( 'No such user exists, re-enter username: ')
                     d.remove_user(user)
                     print 'User was removed succesfully.'
+                    files= raw_input('remove user files? (y/n)')
+                    if files=="y":
+                        shutil.rmtree("~/OneDir_server/%s" % user)
 
                 if admin_command == 4 :
                     user = raw_input( 'Username of the desired profile: ')
@@ -138,10 +152,10 @@ def main() :
                     d.admin_password_change(user, password)
 
                 if admin_command == 8 :
-                    server.connection_times()
+                    read_log()
 
                 if admin_command == 0 :
-                    server.log_out()
+                    log_out()
 
         elif y == 3:
             print 'Too many incorrect attempts, goodbye.'

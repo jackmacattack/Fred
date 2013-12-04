@@ -1,8 +1,9 @@
-
+import datetime
 class Log:
-    def __init__(self, log = 'log.txt'):
-        self.f = open(log,'w')
+    def __init__(self, log = 'log.log'):
+        self.f = open(log,'a')
     def write(self,string):
-        self.f.write(string)
+        s = '[%s] %s'%(datetime.datetime.now(),string)
+        self.f.write(s)
     def close(self):
         self.f.close()
