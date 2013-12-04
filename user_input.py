@@ -2,6 +2,7 @@
 import socket
 from client import *
 from Tkinter import *
+import time
 
 
 def on_login_success(c) :
@@ -60,9 +61,9 @@ def main(client, server):
     #c.start("d-172-25-108-139.bootp.virginia.edu", 12344)
     c.start(server[0], server[1])
 
-    #time.sleep(2)
+    time.sleep(2)
 
-    c.send_message("Connect;" + client[0] + ";" + client[1])
+    c.send_message("Connect;" + client[0] + ";" + str(client[1]))
 
     root.wm_protocol("WM_DELETE_WINDOW", c.stop)
     root.mainloop()

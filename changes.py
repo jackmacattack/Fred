@@ -19,7 +19,7 @@ class TestEventHandler(FileSystemEventHandler):
         self.q.put_nowait(event)
 
     def validate(self, path, name):
-        return name[0] != '.' and name[-1] != '~'
+        return name[0] != '.' and name[-1] != '~' and not os.path.isdir(path)
 
     def process_event(self, event):
         type_change = event.event_type
