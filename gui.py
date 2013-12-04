@@ -176,14 +176,14 @@ class Gui():
         self.logout_button.pack(side=BOTTOM,padx=10,pady=10)
 
     def send_credentials(self) :
-        self.c.send_message("Login;" + self.user_entry.get() + ";" + self.pass_entry.get())
+        self.c.send_credentials(self.user_entry.get(), self.pass_entry.get())
 
     def create_account(self) :
-        self.c.send_message("Add;" + self.create_user_entry.get() + ";" + self.create_pass_entry.get() + ";"
-                          + self.question_entry.get() + ";" + self.answer_entry.get())
+        self.c.create_account(self.create_user_entry.get(), self.create_pass_entry.get(), 
+                            self.question_entry.get(), self.answer_entry.get())
 
     def forgotten_password(self):
-        self.c.send_message("RecoverPW;" + self.forgotten_user_entry.get() + ";" + self.forgotten_answer_entry.get())
+        self.c.forgotten_password(self.forgotten_user_entry.get(), self.forgotten_answer_entry.get())
 
     def login(self):
         #log's user in
@@ -377,7 +377,7 @@ class Gui():
         if self.change_password_entry_1.get() == self.change_password_entry_2.get():
             self.password_mismatch_label.forget()
             self.password_change_label.pack()
-            self.c.send_message("Message;ChangePW;" + self.change_password_entry_1.get())
+            self.c.password_change(self.change_password_entry_1.get())
         else:
             self.password_mismatch_label.pack()
 
